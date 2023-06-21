@@ -31,7 +31,7 @@ head(sunshine)
 sample_n(sunshine, 10)
 nrow(sunshine)
 ```
-- The *sunshine* data has 392 cases of individual cities across the world and the number of sunshine hours they get for each month of the year. The data also contains the country each city resides in and the total number of hours of sunshine per year.
+- The *sunshine* data has 392 cases of individual cities across the world and the number of sunshine hours they get for each month of the year. The data also contains the country each city resides in and the total number of hours of sunshine per year.  
 
 
 ```{r}
@@ -51,7 +51,7 @@ sunshine_seasons <-
 
 sunshine_seasons
 ```
-- I created *sunshine_seasons* which contains the total number of hours for (roughly) each season. Technically seasons tend the start in the middle of a month, so I had to do come approzimation on how I split the seasons up.
+- I created *sunshine_seasons* which contains the total number of hours for (roughly) each season. Technically seasons tend the start in the middle of a month, so I had to do some approximation on how I split the seasons up.
 
 
 ## Data Visualization
