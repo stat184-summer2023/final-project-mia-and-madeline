@@ -24,7 +24,7 @@ library(dplyr)
 
 ##### sunshine hours data
 ```{r}
-sunshine <- read.csv(file = 'C:/Users/Mooch/OneDrive/Documents/PSU/sstat184/Sunshine hours for cities in the world.csv')
+sunshine <- read.csv(file = 'Sunshine hours for cities in the world.csv')
 ```
 - Loading in the sunshine hours per city data.
 
@@ -38,7 +38,7 @@ nrow(sunshine)
 
 ##### city population data
 ```{r}
-CityPopulations <- read_csv(file = "/Users/miaiceland/Library/CloudStorage/OneDrive-ThePennsylvaniaStateUniversity/Stat-184/world-city-listing.csv")
+CityPopulations <- read_csv(file = "world-city-listing.csv")
 
 str(CityPopulations)
 head(CityPopulations)
@@ -50,17 +50,7 @@ nrow(CityPopulations)
 
 #### Data Wrangling 
 
-
-```{r}
-CityPopulations1 <-
-  CityPopulations %>%
-    mutate(Country = country, City = city, Population2023 = pop2023, GrowthRate = growthRate) %>%
-    select(Country, City, Population2023, GrowthRate) %>%
-    filter() #choose which cities we want to evaluate
-```
-
--Mia's Explanation
-
+##### sunshine hours data
 ```{r}
 sunshine_seasons <-
   sunshine %>%
@@ -71,6 +61,19 @@ sunshine_seasons
 ```
 - The original data *sunshine* is already pretty clean data and did not need much wrangling on its own, however there is data we can manipulate for later usage. 
 - I created *sunshine_seasons* which contains the total number of hours for (roughly) each season. Technically seasons tend the start in the middle of a month, so I had to do come approximation on how I split the seasons up.
+
+
+
+##### city population data
+```{r}
+CityPopulations1 <-
+  CityPopulations %>%
+    mutate(Country = country, City = city, Population2023 = pop2023, GrowthRate = growthRate) %>%
+    select(Country, City, Population2023, GrowthRate) %>%
+    filter() #choose which cities we want to evaluate
+```
+
+-Mia's Explanation
 
 
 ## Data Visualization
