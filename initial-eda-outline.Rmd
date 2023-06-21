@@ -8,7 +8,7 @@ This is an outline for your Initial EDA. You can follow this outline, or you can
 
 ## Research Question 
 
-Our project delves into the question of whether there is a correlation between sunshine and population growth rates. When considering all possible reasons as to why people choose to live in certain locations, it is important to consider all contributing factors-- sunshine being one. Seasonal depression and mood-changes based off the weather is a serious impact on many peoples' lives. Applying this knowledge, sunshine could be associated with certain locations having an increase in population over time. 
+Our project delves into the question of whether there is a correlation between sunshine and population and population growth rates. When considering all possible reasons as to why people choose to live in certain locations, it is important to consider all contributing factors-- sunshine being one. Seasonal depression and mood-changes based off the weather is a serious impact on many peoples' lives. Applying this knowledge, sunshine could be associated with certain locations having an increase in population over time. 
 
 
 ## Data Processing 
@@ -42,7 +42,16 @@ CityPopulations <- read_csv(file = "/Users/miaiceland/Library/CloudStorage/OneDr
 #### Data Wrangling 
 Include R code and written explanation for wrangling your data (you can make multiple wrangled data sets). 
 
-- The original data *sunshine* is already pretty clean data and did not need much wrangling on its own, however there is data we can manipulate for later usage. 
+```{r}
+CityPopulations1 <-
+  CityPopulations %>%
+    mutate(Country = country, City = city, Population2023 = pop2023, GrowthRate = growthRate) %>%
+    select(Country, City, Population2023, GrowthRate) %>%
+    filter() #choose which cities we want to evaluate
+```
+
+-Mia's Explanation
+
 ```{r}
 sunshine_seasons <-
   sunshine %>%
@@ -51,7 +60,11 @@ sunshine_seasons <-
 
 sunshine_seasons
 ```
+
 - I created *sunshine_seasons* which contains the total number of hours for (roughly) each season. Technically seasons tend the start in the middle of a month, so I had to do some approximation on how I split the seasons up.
+
+- The original data *sunshine* is already pretty clean data and did not need much wrangling on its own, however there is data we can manipulate for later usage. 
+- I created *sunshine_seasons* which contains the total number of hours for (roughly) each season. Technically seasons tend the start in the middle of a month, so I had to do come approximation on how I split the seasons up.
 
 
 ## Data Visualization
