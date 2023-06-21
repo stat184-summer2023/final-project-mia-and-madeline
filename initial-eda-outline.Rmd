@@ -8,8 +8,6 @@ This is an outline for your Initial EDA. You can follow this outline, or you can
 
 ## Research Question 
 
-State your specific research question and why it is interesting. 
-
 Our project delves into the question of whether there is a correlation between sunshine and population growth rates. When considering all possible reasons as to why people choose to live in certain locations, it is important to consider all contributing factors-- sunshine being one. Seasonal depression and mood-changes based off the weather is a serious impact on many peoples' lives. Applying this knowledge, sunshine could be associated with certain locations having an increase in population over time. 
 
 
