@@ -22,12 +22,12 @@ library(dplyr)
 ```
 
 
+
 ##### sunshine hours data
 ```{r}
 sunshine <- read.csv(file = 'Sunshine hours for cities in the world.csv')
 ```
 - Loading in the sunshine hours per city data.
-
 ```{r}
 str(sunshine)
 head(sunshine)
@@ -35,6 +35,28 @@ sample_n(sunshine, 10)
 nrow(sunshine)
 ```
 - The *sunshine* data has 392 cases of individual cities across the world and the number of sunshine hours they get for each month of the year. The data also contains the country each city resides in and the total number of hours of sunshine per year.  
+
+
+
+##### city latitude/longitude data
+- The original data set I downloaded was too big for GitHub, so I had to process and wrangle the data in a seperate RScript, save the new csv file and then import it here. I will include images of the coding work I did.
+![city_loc intake](C:/Users/Mooch/OneDrive/Documents/PSU/sstat184/activity 8/final-project-mia-and-madeline/city_loc_intake.png)
+- This data set is the already wrangled version (image of the wrangling done below in *Data Wrangling* section).
+```{r}
+city_loc <- read_csv(file="city_loc.csv")
+```
+
+
+
+##### country tourism data
+- Another interesting observation about a country and its sunshine hours pertains to tourism rates. If a country is more desirable (by having more sunshine hours [?]) it will bring in more tourists. This data measures the amount of tourism dollars spent in different countries over the course of many years (in US dollars).
+```{r}
+country_tour <- read.csv("tourism-recipts.csv")
+str(country_tour)
+sample_n(country_tour, 10)
+```
+
+
 
 ##### city population data
 ```{r}
@@ -45,8 +67,19 @@ head(CityPopulations)
 sample_n(CityPopulations, 10)
 nrow(CityPopulations)
 
+#Johannesburg, South Africa
+
+#Helsinki, Finland
+
+#Bogotá, Colombia
+
+#Calgary, Canada
+
 ```
 - Mia's Explanation
+
+
+
 
 #### Data Wrangling 
 
@@ -64,6 +97,53 @@ sunshine_seasons
 
 
 
+##### city latitude/longitude data
+- This data contains a lot of information that is not needed for our purposes: there are extraneous variables and cases that are duplicated to makeup for different spellings of cities. To eliminate this extra data, I will use **select()** to keep only the columns we need and join the table with the *CityPopulations1* cities to only keep the cities we need.
+
+![city_loc data wrangling](C:/Users/Mooch/OneDrive/Documents/PSU/sstat184/activity 8/final-project-mia-and-madeline/city_loc_wrangle.png)
+- Although the tables are now joined, the *city_loc* data contained multiple locations for many of the cities, presumably to represent different corners of each. To combat this, I will take the average of the longitude and latitude for each city and use the new numbers as the primary location for each city.
+```{r}
+city_loc %>%
+  group_by(City) %>%
+  mutate(Longitude = mean(Longitude), Latitude = mean(Latitude)) %>% # get the average location
+  distinct() # remove repeated cities, so each city appears one time
+```
+- Now we know the precise locations of the cities, which will be useful to group cities by their locations (and thus sunshine hours and climate) and compare data from there.
+
+
+
+##### country tourism data
+- After in taking the data, some things that need adjustment in the data: pick only one year to use for the tourism income (to cut down on the data), rename the variables, get rid of the country codes and divide the values into smaller numbers, since they are quite large.
+```{r}
+country_tour <-
+  country_tour %>%
+  rename(income='value_.') %>%
+  select(name, year, income) 
+```
+- In order to find the most useful year, I am going to **group_by()** year and find a year that is relatively recent (>=2015) and contains the most countries with data for that year.
+```{r}
+country_tour %>%
+  filter(year >= 2015) %>%
+  group_by(year) %>%
+  summarise(num_of_countries = n()) #count the number of countries with data for each year
+```
+- From here, we can see the most useful year for these purposes will be 2016. Now the *country_tour* can be shrunk down.
+```{r}
+country_tour <-
+  country_tour %>%
+  filter(year == 2016)
+
+sample_n(country_tour,10)
+```
+```{r}
+country_tour %>%
+  mutate(income = income/100000) %>%
+  rename("tourism income (/100,000)" = income)
+```
+- After dividing the income by $100,000 and renaming the variable, this data is ready for use.
+
+
+
 ##### city population data
 ```{r}
 CityPopulations1 <-
@@ -76,11 +156,16 @@ CityPopulations1 <-
 -Mia's Explanation
 
 
+
+
 ## Data Visualization
 
 #### Plot 1
+##### 
 
-Include R code to make one data visualization (I would encourage you to use 3 or more variables). Include a brief written description of what your graph shows. Is this graph helpful in answering your research question? If it is helpful, will you need to add/modify anything in this graph in the final report? 
+
+
+
 
 #### Plot 2
 
