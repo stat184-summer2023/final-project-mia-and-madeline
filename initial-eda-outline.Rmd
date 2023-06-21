@@ -21,7 +21,7 @@ library(dplyr)
 ```
 
 ```{r}
-sunshine <- read.csv(file = 'C:/Users/Mooch/OneDrive/Documents/PSU/sstat184/Sunshine hours for cities in the world.csv')
+sunshine <- read.csv(file = 'Sunshine hours for cities in the world.csv')
 ```
 - Loading in the sunshine hours per city data.
 
@@ -35,7 +35,7 @@ nrow(sunshine)
 
 
 ```{r}
-CityPopulations <- read_csv(file = "/Users/miaiceland/Library/CloudStorage/OneDrive-ThePennsylvaniaStateUniversity/Stat-184/world-city-listing.csv")
+CityPopulations <- read_csv(file = "world-city-listing.csv")
 
 str(CityPopulations)
 head(CityPopulations)
@@ -57,6 +57,7 @@ CityPopulations1 <-
 ```
 
 -Mia's Explanation
+
 
 ```{r}
 sunshine_seasons <-
