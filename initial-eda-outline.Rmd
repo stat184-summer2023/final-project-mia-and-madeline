@@ -44,7 +44,7 @@ nrow(sunshine)
 - This data set is the already wrangled version (image of the wrangling done below in *Data Wrangling* section).
 ```{r}
 city_loc <- read_csv(file="city_loc.csv")
-```
+```  
 
 
 
@@ -55,7 +55,7 @@ country_tour <- read.csv("tourism-recipts.csv")
 str(country_tour)
 sample_n(country_tour, 10)
 ```
-
+  
 
 
 ##### city population data
@@ -76,7 +76,7 @@ nrow(CityPopulations)
 #Calgary, Canada
 
 ```
-- Mia's Explanation
+- Mia's Explanation  
 
 
 
@@ -93,7 +93,7 @@ sunshine_seasons <-
 sunshine_seasons
 ```
 - The original data *sunshine* is already pretty clean data and did not need much wrangling on its own, however there is data we can manipulate for later usage. 
-- I created *sunshine_seasons* which contains the total number of hours for (roughly) each season. Technically seasons tend the start in the middle of a month, so I had to do come approximation on how I split the seasons up.
+- I created *sunshine_seasons* which contains the total number of hours for (roughly) each season. Technically seasons tend the start in the middle of a month, so I had to do come approximation on how I split the seasons up.  
 
 
 
@@ -103,12 +103,46 @@ sunshine_seasons
 ![city_loc data wrangling](C:/Users/Mooch/OneDrive/Documents/PSU/sstat184/activity 8/final-project-mia-and-madeline/city_loc_wrangle.png)
 - Although the tables are now joined, the *city_loc* data contained multiple locations for many of the cities, presumably to represent different corners of each. To combat this, I will take the average of the longitude and latitude for each city and use the new numbers as the primary location for each city.
 ```{r}
-city_loc %>%
+city_loc <-
+  city_loc %>%
   group_by(City) %>%
   mutate(Longitude = mean(Longitude), Latitude = mean(Latitude)) %>% # get the average location
+  select(City, Longitude, Latitude) %>%
   distinct() # remove repeated cities, so each city appears one time
 ```
+![major latitude lines. Source: TopperLearning.com](latitude_longitude.png)
+- In the graphic the lines for different latitude subsections are shown. I will be using these to split up countries. *tropical* is anywhere from lat -23.5 to 23.5, *moderate* is from -23.5 to -66 and 23.5 to 66 and *poles* will be the rest.
+```{r}
+city_loc
+```
+
+```{r}
+city_loc_tropical <-
+  city_loc %>%
+  filter(Latitude>=(-23.5) && Latitude<=(23.5)) %>%
+  mutate(type = "tropical")
+
+city_loc_moderate <-
+  city_loc %>%
+  filter(Latitude>=(-66) && Latitude<(-23.5) || Latitude<=(66) && Latitude>(23.5)) %>%
+  mutate(type = "moderate")
+
+city_loc_poles <-
+  city_loc %>%
+  filter(Latitude<(-66) || Latitude>(66)) %>%
+  mutate(type = 'poles')
+
+city_loc_types <-
+  bind_rows(city_loc_moderate, city_loc_tropical) # there are no cities (in this data) in the poles, so i am not including it
+```
+```{r}
+city_loc_types
+```
+
 - Now we know the precise locations of the cities, which will be useful to group cities by their locations (and thus sunshine hours and climate) and compare data from there.
+
+
+
 
 
 
@@ -170,10 +204,13 @@ CityPopulations1 <-
 ```{r}
 sunshine_graph_data <-
   sunshine %>%
+  mutate(City = tolower(City)) %>% #to make city names match those in city_loc_types
+  left_join(city_loc_types) %>% # join the tables
   group_by(Country) %>%
   mutate(sun_hours_year = mean(Year)) %>% # find the average sunshine hours per year per country
-  select(Country, sun_hours_year) %>%
-  distinct()
+  select(Country, sun_hours_year, type) %>%
+  distinct() %>%
+  na.omit()
 ```
 - Joining the tables & graphing:
 ```{r}
@@ -182,9 +219,9 @@ sunshine_graph_data %>% #use sunshine for left_join, since it contains less coun
   na.omit() %>%
   rename(tour = 'tourism income (/100,000)') %>% #renaming bc the previous name would not allow proper graphing
   filter(tour<1000000) %>% # removing outlier (the US)
-  ggplot() + geom_point(aes(x=sun_hours_year, y=tour))
+  ggplot() + geom_point(aes(x=sun_hours_year, y=tour, color = type))
 ```
-
+Despite speculation, It does not seem that there is any correlation between a countries sunshine hours per year and the number of tourism dollars they intake, or that is at least not a major factor contributing to tourism. Whether the country has tropical or moderate latitude also does not seem to have a prominent affect.
 
 
 
