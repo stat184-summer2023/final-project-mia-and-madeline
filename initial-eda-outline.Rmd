@@ -136,9 +136,11 @@ country_tour <-
 sample_n(country_tour,10)
 ```
 ```{r}
-country_tour %>%
-  mutate(income = income/100000) %>%
-  rename("tourism income (/100,000)" = income)
+country_tour<-
+  country_tour %>%
+  mutate(income = as.integer(income/100000)) %>%
+  rename("tourism income (/100,000)" = income, Country=name)
+sample_n(country_tour,10)
 ```
 - After dividing the income by $100,000 and renaming the variable, this data is ready for use.
 
@@ -161,7 +163,26 @@ CityPopulations1 <-
 ## Data Visualization
 
 #### Plot 1
-##### 
+##### Tourism & Sunshine Hours (by Country)
+
+- This graph will compare tourism income (in 2016) and sunshine hours for countries. The plot will not focus on each individual country, but rather the trend/correlation between the two.
+- Since *sunshine* contains sunshine hours based on city, we will need to adjust this quickly before graphing, and then join with the *country_tour* data.
+```{r}
+sunshine_graph_data <-
+  sunshine %>%
+  group_by(Country) %>%
+  mutate(sun_hours_year = sum(Year)) %>%
+  select(Country, sun_hours_year) %>%
+  distinct()
+```
+- Joining the tables & graphing:
+```{r}
+sunshine_graph_data %>% #use sunshine for left_join, since it contains less countries than country_tour, so there will be less extra
+  left_join(country_tour) %>%
+  na.omit() #%>%
+  #ggplot() + geom_point(aes(y=sun_hours_year, x='tourism income (/100,000)'))
+```
+
 
 
 
