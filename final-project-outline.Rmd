@@ -1,6 +1,6 @@
 ---
 title: "Final Project Basic Outline"
-author: "Names of all group members"
+author: "Mia and Madeline"
 output: html_notebook
 ---
 
