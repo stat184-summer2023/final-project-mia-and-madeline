@@ -45,6 +45,14 @@ head(CityPopulations)
 sample_n(CityPopulations, 10)
 nrow(CityPopulations)
 
+Johannesburg, South Africa
+
+Helsinki, Finland
+
+Bogotá, Colombia
+
+Calgary, Canada
+
 ```
 - Mia's Explanation
 
