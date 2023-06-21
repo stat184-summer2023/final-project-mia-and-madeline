@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Names of all group members" />
+<meta name="author" content="Madeline Mucciolo, Mia Iceland" />
 
 
 <title>Initial EDA Basic Outline</title>
@@ -1748,7 +1748,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">Initial EDA Basic Outline</h1>
-<h4 class="author">Names of all group members</h4>
+<h4 class="author">Madeline Mucciolo, Mia Iceland</h4>
 
 </div>
 
@@ -1765,13 +1765,108 @@ project.</p>
 <h2>Data Processing</h2>
 <div id="data-intake" class="section level4">
 <h4>Data Intake</h4>
-<p>Include R code and written explanation to import your
-<strong>TWO</strong> data sets.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KHJ2ZXN0KVxubGlicmFyeShkcGx5cilcbmBgYCJ9 -->
+<pre class="r"><code>library(tidyverse)
+library(rvest)
+library(dplyr)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Vuc2hpbmUgPC0gcmVhZC5jc3YoZmlsZSA9ICdDOi9Vc2Vycy9Nb29jaC9PbmVEcml2ZS9Eb2N1bWVudHMvUFNVL3NzdGF0MTg0L1N1bnNoaW5lIGhvdXJzIGZvciBjaXRpZXMgaW4gdGhlIHdvcmxkLmNzdicpXG5gYGAifQ== -->
+<pre class="r"><code>sunshine &lt;- read.csv(file = &#39;C:/Users/Mooch/OneDrive/Documents/PSU/sstat184/Sunshine hours for cities in the world.csv&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>Loading in the sunshine hours per city data.</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKHN1bnNoaW5lKVxuYGBgIn0= -->
+<pre class="r"><code>str(sunshine)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0MzkyIG9icy4gb2YgIDE1IHZhcmlhYmxlczpcbiAkIENvdW50cnk6IGNociAgXCJJdm9yeSBDb2FzdFwiIFwiSXZvcnkgQ29hc3RcIiBcIkl2b3J5IENvYXN0XCIgXCJJdm9yeSBDb2FzdFwiIC4uLlxuICQgQ2l0eSAgIDogY2hyICBcIkdhZ25vYVwiIFwiQm91YWvDqVwiIFwiQWJpZGphblwiIFwiT2RpZW5uw6lcIiAuLi5cbiAkIEphbiAgICA6IG51bSAgMTgzIDI0MiAyMjMgMjQyIDI3OSAuLi5cbiAkIEZlYiAgICA6IG51bSAgMTgwIDIyNCAyMjMgMjIwIDI0OSAuLi5cbiAkIE1hciAgICA6IG51bSAgMTk2IDIxOSAyMzkgMjE3IDI1MyAuLi5cbiAkIEFwciAgICA6IG51bSAgMTg4IDE5NCAyMTQgMjE1IDIyOSAuLi5cbiAkIE1heSAgICA6IG51bSAgMTgxIDIwOCAyMDUgMjQ5IDI1MSAuLi5cbiAkIEp1biAgICA6IG51bSAgMTE4IDE0NSAxMjggMjIyIDIyMSAuLi5cbiAkIEp1bCAgICA6IG51bSAgOTcgMTA0IDEzNyAxODQgMTgzIC4uLlxuICQgQXVnICAgIDogbnVtICA4MCA4MiAxMjUgMTc0IDE1MSAuLi5cbiAkIFNlcCAgICA6IG51bSAgMTEwIDExNSAxMzkgMTg1IDE3MyAuLi5cbiAkIE9jdCAgICA6IG51bSAgMTU1IDE3MCAyMTUgMjM2IDI0NSAuLi5cbiAkIE5vdiAgICA6IG51bSAgMTcxIDE5MSAyMjQgMjUyIDI2MSAyNDMgMjUyIDI4MiAyMzQgMjg0IC4uLlxuICQgRGVjICAgIDogbnVtICAxNjQgMTk4IDIyNCAyNDMgMjYyIC4uLlxuICQgWWVhciAgIDogbnVtICAxODIzIDIwOTIgMjI5NiAyNjM5IDI3NTcgLi4uXG4ifQ== -->
+<pre><code>&#39;data.frame&#39;:   392 obs. of  15 variables:
+ $ Country: chr  &quot;Ivory Coast&quot; &quot;Ivory Coast&quot; &quot;Ivory Coast&quot; &quot;Ivory Coast&quot; ...
+ $ City   : chr  &quot;Gagnoa&quot; &quot;Bouaké&quot; &quot;Abidjan&quot; &quot;Odienné&quot; ...
+ $ Jan    : num  183 242 223 242 279 ...
+ $ Feb    : num  180 224 223 220 249 ...
+ $ Mar    : num  196 219 239 217 253 ...
+ $ Apr    : num  188 194 214 215 229 ...
+ $ May    : num  181 208 205 249 251 ...
+ $ Jun    : num  118 145 128 222 221 ...
+ $ Jul    : num  97 104 137 184 183 ...
+ $ Aug    : num  80 82 125 174 151 ...
+ $ Sep    : num  110 115 139 185 173 ...
+ $ Oct    : num  155 170 215 236 245 ...
+ $ Nov    : num  171 191 224 252 261 243 252 282 234 284 ...
+ $ Dec    : num  164 198 224 243 262 ...
+ $ Year   : num  1823 2092 2296 2639 2757 ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChzdW5zaGluZSlcbmBgYCJ9 -->
+<pre class="r"><code>head(sunshine)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MTUsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOlsiZGYgWzYgw5cgMTVdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQnJWVVBXL1RRQmkrSm5GQ0EyMHFNYkYxUlNJWnlNTG9ObFVRU0tXb0RWTDRFcm5ZRjhleGMyY2N1eVVTQXhNRC82QUlwSUJnNENjZ01WUmlCWW1KbVltWmliRnc5ajBYMXhZcko1M2U1LzE0M284NzNlM3Y5TnYxZnAwUVVpYVZVb21VRFFtSmNhZlhiVjRqMGlLVkZWSWhxNGw4SW9NdVN0Q1FlMFB1S2h6bmJ4eUtjTDdaRVhRVy9RZVRzYzI0eXdzMXE5ZXB3d1dWS05GcTJ5S20zdWNQY05hMmhxNDlvUnplYzN1Mnl6aVhicVZYdXl3OEU5d1JrZUFpbG5BOWNacWpIOGtSRUpPYlNub0YvWEdnNU9UVEY3bStacnhueXU2VFBNOTdQa3FXS1RiQlUzbVd2REY0M2tESnFlWmRQcGJycFNrVzBIK21lWlk4Qjd3eCtwcWNRSDVYOWZ4RkxtL1dKK3dUOU9sQ0Y1ZFFiL0R2K1I2aTNoQnpEUFNjSHhYUFF4NjZ5TmZybzc5N2lLZmdqMzVCWWw1NklWK3ZoL2dlNmo1Q0h2WU5mWUEzUEU3ckwzbjNFZjhBNTBFeGozTWx6Vzh5OUdrWCtyUVF4MUJuZ3Z6VHVacVBnK2YrenQ4RDAva1JyKzlmb0kvZ3RwSjhrSzlud3o4K3lmUDRRVHRaWm9DOHhYdC85VlRaRjMwbDMrQWMzNzFXdlBjdmxQNTJIN3pjS3pZNG5iSVpVYStwa2IyQm1FZmhIR3FsNDBZYWwyL0tkd1RZWlVNTmQybW80VllRWnRhTUZ2TU0rc3ZZMk5Id2dBVWE3bG42clpkdmlVTU5kNWlsKzduTFpMbjhIS3VoT0dycFdkYmtMcW5qbEQ5RVlXRExwek05c0RiV2JSclIxaWlVZkttZEZpZzFFVVN1NEpKVVN2NDdvMEJlQ1F1R2paZ25uZGhOYXh4enIzbTFuVlJJL1dxdlFWYlA0SWFxV2ZxRFhJYisyQmgzWE01MDh6NGRNbjE2NjNMa2RPSldFTHBjSDFsZFdtZXRTRVJVeDlVdDRXdExPaHc1L1F1MmVpbHo1d1VBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["City"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Jan"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Feb"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Mar"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Apr"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["May"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Jun"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Jul"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Aug"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Sep"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["Oct"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Nov"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["Dec"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[15],"type":["dbl"],"align":["right"]}],"data":[{"1":"Ivory Coast","2":"Gagnoa","3":"183.0","4":"180.0","5":"196.0","6":"188.0","7":"181.0","8":"118.0","9":"97.0","10":"80.0","11":"110.0","12":"155.0","13":"171","14":"164.0","15":"1823.0","_rn_":"1"},{"1":"Ivory Coast","2":"Bouaké","3":"242.0","4":"224.0","5":"219.0","6":"194.0","7":"208.0","8":"145.0","9":"104.0","10":"82.0","11":"115.0","12":"170.0","13":"191","14":"198.0","15":"2092.0","_rn_":"2"},{"1":"Ivory Coast","2":"Abidjan","3":"223.0","4":"223.0","5":"239.0","6":"214.0","7":"205.0","8":"128.0","9":"137.0","10":"125.0","11":"139.0","12":"215.0","13":"224","14":"224.0","15":"2296.0","_rn_":"3"},{"1":"Ivory Coast","2":"Odienné","3":"242.0","4":"220.2","5":"217.3","6":"214.7","7":"248.8","8":"221.8","9":"183.5","10":"174.5","11":"185.4","12":"235.8","13":"252","14":"242.6","15":"2638.6","_rn_":"4"},{"1":"Ivory Coast","2":"Ferké","3":"279.0","4":"249.0","5":"253.0","6":"229.0","7":"251.0","8":"221.0","9":"183.0","10":"151.0","11":"173.0","12":"245.0","13":"261","14":"262.0","15":"2757.0","_rn_":"5"},{"1":"Benin","2":"Cotonou","3":"213.9","4":"210.0","5":"223.2","6":"219.0","7":"213.9","8":"141.0","9":"136.4","10":"148.8","11":"165.0","12":"207.7","13":"243","14":"223.2","15":"2345.2","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[15]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2FtcGxlX24oc3Vuc2hpbmUsIDEwKVxuYGBgIn0= -->
+<pre class="r"><code>sample_n(sunshine, 10)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MTAsIm5jb2wiOjE1LCJzdW1tYXJ5Ijp7IkRlc2NyaXB0aW9uIjpbImRmIFsxMCDDlyAxNV0iXX19LCJyZGYiOiJINHNJQUFBQUFBQUFCblZWTzJnVVVSU2Q3R2J6R2ZNREs3dTFzVXNRQTZMZDVBdis0cG8xbW8rYXZKbDVPenZKN0p0eFBsSEJRaEFFNjFSYVNFSkFzQkFFV3dzTEVRUUZRYkN4RVFSckswdjE3ZDV6Sjg2S0Q0Wjc3M252bm52dW5lSE40dXp5cExsc0dvWlJObnBMSmFOYzBhNVJXYm84UDM3SzBJZ09lb3hlWTdCdGIrdERoN1V6cXA4eC9aallHRmxTZmlyZDZqbGZlVzdZQWpvd2x6YjlNUElGNHNHcDJKTXE5UlVEdmZQK3BnKy9iekZMa3Z6b01BanJxVWhsQXJCeVZrUkNNZmwwRm5naXpqUDY2aksyLzVkZlZHdGVFTXBweWlTVk1aQkRVNjdySjlVcFc5ck1NSEJlVkd1QlNIT3Q5V3c3OXkrMmtpMzQvWE5CdFNhU2tHVXNDQys4d3djcjliQ1JheHFZbG9FWEMxZHlQQk1HV2N2TzJ2SkcycklzeStnc0svb3kyVjVXNkpCdDlqWGF5N3FFL2ZBaldUbEQrMWVBTDhLdVBlMmN6M25QQUZmSUMxNVNYb01LV3V1d1VRUmV4TmZ1a1YyQlhkL3A1T1c4eTYraEIveWJLNC8wZW16SkdzVWU4SFFEOFQ3VmRZRTdWYkl1R21kZXhqZDNrV2NWejdmQWw2Ritjd2Y5SVBhZzF6L2QwWlB6eXErRWI0SEhBWTk5a3VaN0UvbTNEMkh1THpBdjRBbzZWUEJlcncvLzZIVlE5d2I2RTlDZi9BQnZEODNIZnRYSnR5TGtSWmhYZExSTEwvU3RmU2Q5NjIvSmlpSEtUOGRvZi9zKzZiWFBFSCtNUHVQajRGMG9mZzhPK3RoNFJ1ZmRZK0Q5aE84Tyt0T2ZoUHVvRndPL3llL2hibkVPMTdsdjhMUCtEZWhwWUQ0Sno0SGZCNzh2MkUyeU9XOGQ4NCtnMTRjdTl5SEZxNmdYWTE5Q253cytGem9hMzRyZjd4ejBSaS9JQnNpVHdDOXgzU09ZMHhXcXV3cmVaZFJkSFNyT1llNWVVVy9yTStVMWZZb1hzSy9lUWU4RDJxOEJyNEYzNlhCUjc4NGJ3dmZIS0c4UHZFOEdDTjg3UWZZNU5XRHRYcVgzdVZkQ0RQNjlZZkFXYnZlS0VxMzhyaHpsNjIwbXpGUWEzK0diYjhaUDJTK2Z6Uy9qOHJ5MDJiMGcrRll0VDBYeEFYcVFscWtETjhqUFpoNjdkUm14ZTlGSjJWMEl0OW1kbFE3cldaRzZYTEdQd1RpOE5jRzlET3VuaE0vSjdHN1lDVVRDRFROb3V2ck9uMmpFT2w5SHY3cFMrc01vOVVPbGswcnQvMkNsSzdrbjdnTEdNdFZXNG80N3pVeHRqWitZSkJsNm45WXdmUE12ZjVScWxuNkRxOEsvRnFrOFgvSGZveElJVy9MMFJuVExuWTRub3RoWFBESlRvOGxFR3FhQ3o1bE9HRERTYWM3NDlRYzh6NFVyL3djQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["City"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Jan"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Feb"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Mar"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Apr"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["May"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Jun"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Jul"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Aug"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Sep"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["Oct"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Nov"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["Dec"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[15],"type":["dbl"],"align":["right"]}],"data":[{"1":"United Kingdom","2":"Manchester","3":"32.0","4":"50.0","5":"99.0","6":"153.0","7":"175.0","8":"153.0","9":"171.0","10":"154.0","11":"116.0","12":"79.0","13":"42.0","14":"43.0","15":"1265.0"},{"1":"Ethiopia","2":"Addis Abeba","3":"269.7","4":"246.5","5":"248.0","6":"213.0","7":"217.0","8":"156.0","9":"111.6","10":"133.3","11":"138.0","12":"266.6","13":"267.0","14":"266.6","15":"2440.3"},{"1":"Argentina","2":"La Plata","3":"251.1","4":"229.6","5":"210.8","6":"186.0","7":"155.0","8":"120.0","9":"127.1","10":"161.2","11":"171.0","12":"207.7","13":"225.0","14":"238.7","15":"2283.2"},{"1":"Fiji","2":"Suva","3":"192.2","4":"178.0","5":"170.5","6":"153.0","7":"145.7","8":"141.0","9":"136.4","10":"142.6","11":"135.0","12":"164.3","13":"168.0","14":"195.3","15":"1922.0"},{"1":"Russia","2":"Omsk","3":"68.0","4":"125.0","5":"184.0","6":"235.0","7":"284.0","8":"319.0","9":"321.0","10":"248.0","11":"180.0","12":"105.0","13":"71.0","14":"61.0","15":"2201.0"},{"1":"United States","2":"El Paso","3":"254.5","4":"263.0","5":"326.0","6":"348.0","7":"384.7","8":"384.1","9":"360.2","10":"335.4","11":"304.1","12":"298.6","13":"257.6","14":"246.3","15":"3762.5"},{"1":"Japan","2":"Nagoya","3":"170.1","4":"170.0","5":"189.1","6":"196.6","7":"197.5","8":"149.9","9":"146.3","10":"200.4","11":"151.0","12":"169.0","13":"162.7","14":"172.2","15":"2091.6"},{"1":"Bulgaria","2":"Sofia","3":"88.0","4":"114.0","5":"160.0","6":"182.0","7":"230.0","8":"258.0","9":"302.0","10":"288.0","11":"220.0","12":"164.0","13":"106.0","14":"66.0","15":"2177.0"},{"1":"Serbia","2":"Belgrade","3":"72.0","4":"102.0","5":"153.0","6":"188.0","7":"242.0","8":"261.0","9":"291.0","10":"274.0","11":"204.0","12":"163.0","13":"97.0","14":"65.0","15":"2112.0"},{"1":"United States","2":"Columbus","3":"110.6","4":"126.3","5":"162.0","6":"201.8","7":"243.4","8":"258.1","9":"260.9","10":"235.9","11":"212.0","12":"183.1","13":"104.2","14":"84.3","15":"2182.6"}],"options":{"columns":{"min":{},"max":[10],"total":[15]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnJvdyhzdW5zaGluZSlcbmBgYCJ9 -->
+<pre class="r"><code>nrow(sunshine)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM5MlxuIn0= -->
+<pre><code>[1] 392</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>The <em>sunshine</em> data has 392 cases of individual cities across
+the world and the number of sunshine hours they get for each month of
+the year. The data also contains the country each city resides in and
+the total number of hours of sunshine per year.</li>
+</ul>
 </div>
 <div id="data-wrangling" class="section level4">
 <h4>Data Wrangling</h4>
-<p>Include R code and written explanation for wangling your data (you
-can make multiple wrangled data sets).</p>
+<ul>
+<li>The original data <em>sunshine</em> is already pretty clean data and
+did not need much wrangling on its own, however there is data we can
+manipulate for later usage.</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Vuc2hpbmVfc2Vhc29ucyA8LVxuICBzdW5zaGluZSAlPiVcbiAgbXV0YXRlKFdpbnRlcj1KYW4rRmViK01hciwgU3ByaW5nPUFwcitNYXkrSnVuLCBTdW1tZXI9SnVsK0F1ZytTZXAsIEZhbGw9T2N0K05vditEZWMpICU+JVxuICBzZWxlY3QoQ291bnRyeSwgQ2l0eSwgV2ludGVyLCBTcHJpbmcsIFN1bW1lciwgRmFsbClcblxuc3Vuc2hpbmVfc2Vhc29uc1xuYGBgIn0= -->
+<pre class="r"><code>sunshine_seasons &lt;-
+  sunshine %&gt;%
+  mutate(Winter=Jan+Feb+Mar, Spring=Apr+May+Jun, Summer=Jul+Aug+Sep, Fall=Oct+Nov+Dec) %&gt;%
+  select(Country, City, Winter, Spring, Summer, Fall)
+
+sunshine_seasons</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>I created <em>sunshine_seasons</em> which contains the total number
+of hours for (roughly) each season. Technically seasons tend the start
+in the middle of a month, so I had to do come approzimation on how I
+split the seasons up.</li>
+</ul>
 </div>
 </div>
 <div id="data-visualization" class="section level2">
@@ -1800,7 +1895,7 @@ question is using the data sets and visualizations you created.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW5pdGlhbCBFREEgQmFzaWMgT3V0bGluZSIKYXV0aG9yOiAiTmFtZXMgb2YgYWxsIGdyb3VwIG1lbWJlcnMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClRoaXMgaXMgYW4gb3V0bGluZSBmb3IgeW91ciBJbml0aWFsIEVEQS4gWW91IGNhbiBmb2xsb3cgdGhpcyBvdXRsaW5lLCBvciB5b3UgY2FuIG1vZGlmeSBpdCBhcyB5b3Ugc2VlIGZpdC4gRG8gd2hhdCB3b3JrcyBiZXN0IGZvciB5b3VyIHByb2plY3QuIAoKIyMgUmVzZWFyY2ggUXVlc3Rpb24gCgpTdGF0ZSB5b3VyIHNwZWNpZmljIHJlc2VhcmNoIHF1ZXN0aW9uIGFuZCB3aHkgaXQgaXMgaW50ZXJlc3RpbmcuIAoKCgojIyBEYXRhIFByb2Nlc3NpbmcgCgojIyMjIERhdGEgSW50YWtlIAoKSW5jbHVkZSBSIGNvZGUgYW5kIHdyaXR0ZW4gZXhwbGFuYXRpb24gdG8gaW1wb3J0IHlvdXIgKipUV08qKiBkYXRhIHNldHMuCgojIyMjIERhdGEgV3JhbmdsaW5nIAoKSW5jbHVkZSBSIGNvZGUgYW5kIHdyaXR0ZW4gZXhwbGFuYXRpb24gZm9yIHdhbmdsaW5nIHlvdXIgZGF0YSAoeW91IGNhbiBtYWtlIG11bHRpcGxlIHdyYW5nbGVkIGRhdGEgc2V0cykuIAoKCgoKIyMgRGF0YSBWaXN1YWxpemF0aW9uCgojIyMjIFBsb3QgMQoKSW5jbHVkZSBSIGNvZGUgdG8gbWFrZSBvbmUgZGF0YSB2aXN1YWxpemF0aW9uIChJIHdvdWxkIGVuY291cmFnZSB5b3UgdG8gdXNlIDMgb3IgbW9yZSB2YXJpYWJsZXMpLiBJbmNsdWRlIGEgYnJpZWYgd3JpdHRlbiBkZXNjcmlwdGlvbiBvZiB3aGF0IHlvdXIgZ3JhcGggc2hvd3MuIElzIHRoaXMgZ3JhcGggaGVscGZ1bCBpbiBhbnN3ZXJpbmcgeW91ciByZXNlYXJjaCBxdWVzdGlvbj8gSWYgaXQgaXMgaGVscGZ1bCwgd2lsbCB5b3UgbmVlZCB0byBhZGQvbW9kaWZ5IGFueXRoaW5nIGluIHRoaXMgZ3JhcGggaW4gdGhlIGZpbmFsIHJlcG9ydD8gCgojIyMjIFBsb3QgMgoKSW5jbHVkZSBSIGNvZGUgdG8gbWFrZSBvbmUgZGF0YSB2aXN1YWxpemF0aW9uIChJIHdvdWxkIGVuY291cmFnZSB5b3UgdG8gdXNlIDMgb3IgbW9yZSB2YXJpYWJsZXMpLiBJbmNsdWRlIGEgYnJpZWYgd3JpdHRlbiBkZXNjcmlwdGlvbiBvZiB3aGF0IHlvdXIgZ3JhcGggc2hvd3MuIElzIHRoaXMgZ3JhcGggaGVscGZ1bCBpbiBhbnN3ZXJpbmcgeW91ciByZXNlYXJjaCBxdWVzdGlvbj8gSWYgaXQgaXMgaGVscGZ1bCwgd2lsbCB5b3UgbmVlZCB0byBhZGQvbW9kaWZ5IGFueXRoaW5nIGluIHRoaXMgZ3JhcGggaW4gdGhlIGZpbmFsIHJlcG9ydD8gCgoKIyMgQ29uY2x1c2lvbgoKSW5jbHVkZSB5b3VyIGluaXRpYWwgaW50dWl0aW9uIGFzIHRvIHdoYXQgdGhlIGFuc3dlciB0byB5b3VyIHJlc2VhcmNoIHF1ZXN0aW9uIGlzIHVzaW5nIHRoZSBkYXRhIHNldHMgYW5kIHZpc3VhbGl6YXRpb25zIHlvdSBjcmVhdGVkLiA=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkluaXRpYWwgRURBIEJhc2ljIE91dGxpbmUiDQphdXRob3I6ICJNYWRlbGluZSBNdWNjaW9sbywgTWlhIEljZWxhbmQiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpUaGlzIGlzIGFuIG91dGxpbmUgZm9yIHlvdXIgSW5pdGlhbCBFREEuIFlvdSBjYW4gZm9sbG93IHRoaXMgb3V0bGluZSwgb3IgeW91IGNhbiBtb2RpZnkgaXQgYXMgeW91IHNlZSBmaXQuIERvIHdoYXQgd29ya3MgYmVzdCBmb3IgeW91ciBwcm9qZWN0LiANCg0KIyMgUmVzZWFyY2ggUXVlc3Rpb24gDQoNClN0YXRlIHlvdXIgc3BlY2lmaWMgcmVzZWFyY2ggcXVlc3Rpb24gYW5kIHdoeSBpdCBpcyBpbnRlcmVzdGluZy4gDQoNCg0KDQojIyBEYXRhIFByb2Nlc3NpbmcgDQoNCiMjIyMgRGF0YSBJbnRha2UgDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShydmVzdCkNCmxpYnJhcnkoZHBseXIpDQpgYGANCg0KYGBge3J9DQpzdW5zaGluZSA8LSByZWFkLmNzdihmaWxlID0gJ0M6L1VzZXJzL01vb2NoL09uZURyaXZlL0RvY3VtZW50cy9QU1Uvc3N0YXQxODQvU3Vuc2hpbmUgaG91cnMgZm9yIGNpdGllcyBpbiB0aGUgd29ybGQuY3N2JykNCmBgYA0KLSBMb2FkaW5nIGluIHRoZSBzdW5zaGluZSBob3VycyBwZXIgY2l0eSBkYXRhLg0KDQpgYGB7cn0NCnN0cihzdW5zaGluZSkNCmhlYWQoc3Vuc2hpbmUpDQpzYW1wbGVfbihzdW5zaGluZSwgMTApDQpucm93KHN1bnNoaW5lKQ0KYGBgDQotIFRoZSAqc3Vuc2hpbmUqIGRhdGEgaGFzIDM5MiBjYXNlcyBvZiBpbmRpdmlkdWFsIGNpdGllcyBhY3Jvc3MgdGhlIHdvcmxkIGFuZCB0aGUgbnVtYmVyIG9mIHN1bnNoaW5lIGhvdXJzIHRoZXkgZ2V0IGZvciBlYWNoIG1vbnRoIG9mIHRoZSB5ZWFyLiBUaGUgZGF0YSBhbHNvIGNvbnRhaW5zIHRoZSBjb3VudHJ5IGVhY2ggY2l0eSByZXNpZGVzIGluIGFuZCB0aGUgdG90YWwgbnVtYmVyIG9mIGhvdXJzIG9mIHN1bnNoaW5lIHBlciB5ZWFyLg0KDQoNCiMjIyMgRGF0YSBXcmFuZ2xpbmcgDQoNCi0gVGhlIG9yaWdpbmFsIGRhdGEgKnN1bnNoaW5lKiBpcyBhbHJlYWR5IHByZXR0eSBjbGVhbiBkYXRhIGFuZCBkaWQgbm90IG5lZWQgbXVjaCB3cmFuZ2xpbmcgb24gaXRzIG93biwgaG93ZXZlciB0aGVyZSBpcyBkYXRhIHdlIGNhbiBtYW5pcHVsYXRlIGZvciBsYXRlciB1c2FnZS4gDQoNCmBgYHtyfQ0Kc3Vuc2hpbmVfc2Vhc29ucyA8LQ0KICBzdW5zaGluZSAlPiUNCiAgbXV0YXRlKFdpbnRlcj1KYW4rRmViK01hciwgU3ByaW5nPUFwcitNYXkrSnVuLCBTdW1tZXI9SnVsK0F1ZytTZXAsIEZhbGw9T2N0K05vditEZWMpICU+JQ0KICBzZWxlY3QoQ291bnRyeSwgQ2l0eSwgV2ludGVyLCBTcHJpbmcsIFN1bW1lciwgRmFsbCkNCg0Kc3Vuc2hpbmVfc2Vhc29ucw0KYGBgDQotIEkgY3JlYXRlZCAqc3Vuc2hpbmVfc2Vhc29ucyogd2hpY2ggY29udGFpbnMgdGhlIHRvdGFsIG51bWJlciBvZiBob3VycyBmb3IgKHJvdWdobHkpIGVhY2ggc2Vhc29uLiBUZWNobmljYWxseSBzZWFzb25zIHRlbmQgdGhlIHN0YXJ0IGluIHRoZSBtaWRkbGUgb2YgYSBtb250aCwgc28gSSBoYWQgdG8gZG8gY29tZSBhcHByb3ppbWF0aW9uIG9uIGhvdyBJIHNwbGl0IHRoZSBzZWFzb25zIHVwLg0KDQoNCiMjIERhdGEgVmlzdWFsaXphdGlvbg0KDQojIyMjIFBsb3QgMQ0KDQpJbmNsdWRlIFIgY29kZSB0byBtYWtlIG9uZSBkYXRhIHZpc3VhbGl6YXRpb24gKEkgd291bGQgZW5jb3VyYWdlIHlvdSB0byB1c2UgMyBvciBtb3JlIHZhcmlhYmxlcykuIEluY2x1ZGUgYSBicmllZiB3cml0dGVuIGRlc2NyaXB0aW9uIG9mIHdoYXQgeW91ciBncmFwaCBzaG93cy4gSXMgdGhpcyBncmFwaCBoZWxwZnVsIGluIGFuc3dlcmluZyB5b3VyIHJlc2VhcmNoIHF1ZXN0aW9uPyBJZiBpdCBpcyBoZWxwZnVsLCB3aWxsIHlvdSBuZWVkIHRvIGFkZC9tb2RpZnkgYW55dGhpbmcgaW4gdGhpcyBncmFwaCBpbiB0aGUgZmluYWwgcmVwb3J0PyANCg0KIyMjIyBQbG90IDINCg0KSW5jbHVkZSBSIGNvZGUgdG8gbWFrZSBvbmUgZGF0YSB2aXN1YWxpemF0aW9uIChJIHdvdWxkIGVuY291cmFnZSB5b3UgdG8gdXNlIDMgb3IgbW9yZSB2YXJpYWJsZXMpLiBJbmNsdWRlIGEgYnJpZWYgd3JpdHRlbiBkZXNjcmlwdGlvbiBvZiB3aGF0IHlvdXIgZ3JhcGggc2hvd3MuIElzIHRoaXMgZ3JhcGggaGVscGZ1bCBpbiBhbnN3ZXJpbmcgeW91ciByZXNlYXJjaCBxdWVzdGlvbj8gSWYgaXQgaXMgaGVscGZ1bCwgd2lsbCB5b3UgbmVlZCB0byBhZGQvbW9kaWZ5IGFueXRoaW5nIGluIHRoaXMgZ3JhcGggaW4gdGhlIGZpbmFsIHJlcG9ydD8gDQoNCg0KIyMgQ29uY2x1c2lvbg0KDQpJbmNsdWRlIHlvdXIgaW5pdGlhbCBpbnR1aXRpb24gYXMgdG8gd2hhdCB0aGUgYW5zd2VyIHRvIHlvdXIgcmVzZWFyY2ggcXVlc3Rpb24gaXMgdXNpbmcgdGhlIGRhdGEgc2V0cyBhbmQgdmlzdWFsaXphdGlvbnMgeW91IGNyZWF0ZWQuIA==</div>
 
 
 
