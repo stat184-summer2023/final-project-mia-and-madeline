@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Mia and Madeline" />
+<meta name="author" content="Madeline Mucciolo, Mia Iceland" />
 
 
 <title>Initial EDA Basic Outline</title>
@@ -1748,7 +1748,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">Initial EDA Basic Outline</h1>
-<h4 class="author">Mia and Madeline</h4>
+<h4 class="author">Madeline Mucciolo, Mia Iceland</h4>
 
 </div>
 
@@ -1772,20 +1772,86 @@ increase in population over time.</p>
 <h2>Data Processing</h2>
 <div id="data-intake" class="section level4">
 <h4>Data Intake</h4>
-<p>Include R code and written explanation to import your
-<strong>TWO</strong> data sets.</p>
-<p>library(tidyverse)</p>
-<p>CityPopulations &lt;- read_csv(file =
-“/Users/miaiceland/Library/CloudStorage/OneDrive-ThePennsylvaniaStateUniversity/Stat-184/world-city-listing.csv”)</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KHJ2ZXN0KVxubGlicmFyeShkcGx5cilcbmBgYCJ9 -->
+<pre class="r"><code>library(tidyverse)
+library(rvest)
+library(dplyr)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Vuc2hpbmUgPC0gcmVhZC5jc3YoZmlsZSA9ICdDOi9Vc2Vycy9Nb29jaC9PbmVEcml2ZS9Eb2N1bWVudHMvUFNVL3NzdGF0MTg0L1N1bnNoaW5lIGhvdXJzIGZvciBjaXRpZXMgaW4gdGhlIHdvcmxkLmNzdicpXG5gYGAifQ== -->
+<pre class="r"><code>sunshine &lt;- read.csv(file = &#39;C:/Users/Mooch/OneDrive/Documents/PSU/sstat184/Sunshine hours for cities in the world.csv&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>Loading in the sunshine hours per city data.</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKHN1bnNoaW5lKVxuaGVhZChzdW5zaGluZSlcbnNhbXBsZV9uKHN1bnNoaW5lLCAxMClcbm5yb3coc3Vuc2hpbmUpXG5gYGAifQ== -->
+<pre class="r"><code>str(sunshine)
+head(sunshine)
+sample_n(sunshine, 10)
+nrow(sunshine)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>The <em>sunshine</em> data has 392 cases of individual cities across
+the world and the number of sunshine hours they get for each month of
+the year. The data also contains the country each city resides in and
+the total number of hours of sunshine per year.</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQ2l0eVBvcHVsYXRpb25zIDwtIHJlYWRfY3N2KGZpbGUgPSBcIi9Vc2Vycy9taWFpY2VsYW5kL0xpYnJhcnkvQ2xvdWRTdG9yYWdlL09uZURyaXZlLVRoZVBlbm5zeWx2YW5pYVN0YXRlVW5pdmVyc2l0eS9TdGF0LTE4NC93b3JsZC1jaXR5LWxpc3RpbmcuY3N2XCIpXG5gYGAifQ== -->
+<pre class="r"><code>CityPopulations &lt;- read_csv(file = &quot;/Users/miaiceland/Library/CloudStorage/OneDrive-ThePennsylvaniaStateUniversity/Stat-184/world-city-listing.csv&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="data-wrangling" class="section level4">
 <h4>Data Wrangling</h4>
 <p>Include R code and written explanation for wrangling your data (you
 can make multiple wrangled data sets).</p>
-<p>CityPopulations1 &lt;- CityPopulations %&gt;% mutate(Country =
-country, City = city, Population2023 = pop2023, GrowthRate = growthRate)
-%&gt;% select(Country, City, Population2023, GrowthRate) %&gt;% filter()
-#choose which cities we want to evaluate</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQ2l0eVBvcHVsYXRpb25zMSA8LVxuICBDaXR5UG9wdWxhdGlvbnMgJT4lXG4gICAgbXV0YXRlKENvdW50cnkgPSBjb3VudHJ5LCBDaXR5ID0gY2l0eSwgUG9wdWxhdGlvbjIwMjMgPSBwb3AyMDIzLCBHcm93dGhSYXRlID0gZ3Jvd3RoUmF0ZSkgJT4lXG4gICAgc2VsZWN0KENvdW50cnksIENpdHksIFBvcHVsYXRpb24yMDIzLCBHcm93dGhSYXRlKSAlPiVcbiAgICBmaWx0ZXIoKSAjY2hvb3NlIHdoaWNoIGNpdGllcyB3ZSB3YW50IHRvIGV2YWx1YXRlXG5gYGAifQ== -->
+<pre class="r"><code>CityPopulations1 &lt;-
+  CityPopulations %&gt;%
+    mutate(Country = country, City = city, Population2023 = pop2023, GrowthRate = growthRate) %&gt;%
+    select(Country, City, Population2023, GrowthRate) %&gt;%
+    filter() #choose which cities we want to evaluate</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>-Mia’s Explanation</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Vuc2hpbmVfc2Vhc29ucyA8LVxuICBzdW5zaGluZSAlPiVcbiAgbXV0YXRlKFdpbnRlcj1KYW4rRmViK01hciwgU3ByaW5nPUFwcitNYXkrSnVuLCBTdW1tZXI9SnVsK0F1ZytTZXAsIEZhbGw9T2N0K05vditEZWMpICU+JVxuICBzZWxlY3QoQ291bnRyeSwgQ2l0eSwgV2ludGVyLCBTcHJpbmcsIFN1bW1lciwgRmFsbClcblxuc3Vuc2hpbmVfc2Vhc29uc1xuYGBgIn0= -->
+<pre class="r"><code>sunshine_seasons &lt;-
+  sunshine %&gt;%
+  mutate(Winter=Jan+Feb+Mar, Spring=Apr+May+Jun, Summer=Jul+Aug+Sep, Fall=Oct+Nov+Dec) %&gt;%
+  select(Country, City, Winter, Spring, Summer, Fall)
+
+sunshine_seasons</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>The original data <em>sunshine</em> is already pretty clean data and
+did not need much wrangling on its own, however there is data we can
+manipulate for later usage.</li>
+<li>I created <em>sunshine_seasons</em> which contains the total number
+of hours for (roughly) each season. Technically seasons tend the start
+in the middle of a month, so I had to do come approximation on how I
+split the seasons up.</li>
+</ul>
 </div>
 </div>
 <div id="data-visualization" class="section level2">
@@ -1814,7 +1880,7 @@ question is using the data sets and visualizations you created.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW5pdGlhbCBFREEgQmFzaWMgT3V0bGluZSIKYXV0aG9yOiAiTWlhIGFuZCBNYWRlbGluZSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKVGhpcyBpcyBhbiBvdXRsaW5lIGZvciB5b3VyIEluaXRpYWwgRURBLiBZb3UgY2FuIGZvbGxvdyB0aGlzIG91dGxpbmUsIG9yIHlvdSBjYW4gbW9kaWZ5IGl0IGFzIHlvdSBzZWUgZml0LiBEbyB3aGF0IHdvcmtzIGJlc3QgZm9yIHlvdXIgcHJvamVjdC4gCgojIyBSZXNlYXJjaCBRdWVzdGlvbiAKCk91ciBwcm9qZWN0IGRlbHZlcyBpbnRvIHRoZSBxdWVzdGlvbiBvZiB3aGV0aGVyIHRoZXJlIGlzIGEgY29ycmVsYXRpb24gYmV0d2VlbiBzdW5zaGluZSBhbmQgcG9wdWxhdGlvbiBhbmQgcG9wdWxhdGlvbiBncm93dGggcmF0ZXMuIFdoZW4gY29uc2lkZXJpbmcgYWxsIHBvc3NpYmxlIHJlYXNvbnMgYXMgdG8gd2h5IHBlb3BsZSBjaG9vc2UgdG8gbGl2ZSBpbiBjZXJ0YWluIGxvY2F0aW9ucywgaXQgaXMgaW1wb3J0YW50IHRvIGNvbnNpZGVyIGFsbCBjb250cmlidXRpbmcgZmFjdG9ycy0tIHN1bnNoaW5lIGJlaW5nIG9uZS4gU2Vhc29uYWwgZGVwcmVzc2lvbiBhbmQgbW9vZC1jaGFuZ2VzIGJhc2VkIG9mZiB0aGUgd2VhdGhlciBpcyBhIHNlcmlvdXMgaW1wYWN0IG9uIG1hbnkgcGVvcGxlcycgbGl2ZXMuIEFwcGx5aW5nIHRoaXMga25vd2xlZGdlLCBzdW5zaGluZSBjb3VsZCBiZSBhc3NvY2lhdGVkIHdpdGggY2VydGFpbiBsb2NhdGlvbnMgaGF2aW5nIGFuIGluY3JlYXNlIGluIHBvcHVsYXRpb24gb3ZlciB0aW1lLiAKCgojIyBEYXRhIFByb2Nlc3NpbmcgCgojIyMjIERhdGEgSW50YWtlIAoKSW5jbHVkZSBSIGNvZGUgYW5kIHdyaXR0ZW4gZXhwbGFuYXRpb24gdG8gaW1wb3J0IHlvdXIgKipUV08qKiBkYXRhIHNldHMuCgpsaWJyYXJ5KHRpZHl2ZXJzZSkKCkNpdHlQb3B1bGF0aW9ucyA8LSByZWFkX2NzdihmaWxlID0gIi9Vc2Vycy9taWFpY2VsYW5kL0xpYnJhcnkvQ2xvdWRTdG9yYWdlL09uZURyaXZlLVRoZVBlbm5zeWx2YW5pYVN0YXRlVW5pdmVyc2l0eS9TdGF0LTE4NC93b3JsZC1jaXR5LWxpc3RpbmcuY3N2IikKCgojIyMjIERhdGEgV3JhbmdsaW5nIAoKSW5jbHVkZSBSIGNvZGUgYW5kIHdyaXR0ZW4gZXhwbGFuYXRpb24gZm9yIHdyYW5nbGluZyB5b3VyIGRhdGEgKHlvdSBjYW4gbWFrZSBtdWx0aXBsZSB3cmFuZ2xlZCBkYXRhIHNldHMpLiAKCkNpdHlQb3B1bGF0aW9uczEgPC0KICBDaXR5UG9wdWxhdGlvbnMgJT4lCiAgICBtdXRhdGUoQ291bnRyeSA9IGNvdW50cnksIENpdHkgPSBjaXR5LCBQb3B1bGF0aW9uMjAyMyA9IHBvcDIwMjMsIEdyb3d0aFJhdGUgPSBncm93dGhSYXRlKSAlPiUKICAgIHNlbGVjdChDb3VudHJ5LCBDaXR5LCBQb3B1bGF0aW9uMjAyMywgR3Jvd3RoUmF0ZSkgJT4lCiAgICBmaWx0ZXIoKSAjY2hvb3NlIHdoaWNoIGNpdGllcyB3ZSB3YW50IHRvIGV2YWx1YXRlCgoKIyMgRGF0YSBWaXN1YWxpemF0aW9uCgojIyMjIFBsb3QgMQoKSW5jbHVkZSBSIGNvZGUgdG8gbWFrZSBvbmUgZGF0YSB2aXN1YWxpemF0aW9uIChJIHdvdWxkIGVuY291cmFnZSB5b3UgdG8gdXNlIDMgb3IgbW9yZSB2YXJpYWJsZXMpLiBJbmNsdWRlIGEgYnJpZWYgd3JpdHRlbiBkZXNjcmlwdGlvbiBvZiB3aGF0IHlvdXIgZ3JhcGggc2hvd3MuIElzIHRoaXMgZ3JhcGggaGVscGZ1bCBpbiBhbnN3ZXJpbmcgeW91ciByZXNlYXJjaCBxdWVzdGlvbj8gSWYgaXQgaXMgaGVscGZ1bCwgd2lsbCB5b3UgbmVlZCB0byBhZGQvbW9kaWZ5IGFueXRoaW5nIGluIHRoaXMgZ3JhcGggaW4gdGhlIGZpbmFsIHJlcG9ydD8gCgojIyMjIFBsb3QgMgoKSW5jbHVkZSBSIGNvZGUgdG8gbWFrZSBvbmUgZGF0YSB2aXN1YWxpemF0aW9uIChJIHdvdWxkIGVuY291cmFnZSB5b3UgdG8gdXNlIDMgb3IgbW9yZSB2YXJpYWJsZXMpLiBJbmNsdWRlIGEgYnJpZWYgd3JpdHRlbiBkZXNjcmlwdGlvbiBvZiB3aGF0IHlvdXIgZ3JhcGggc2hvd3MuIElzIHRoaXMgZ3JhcGggaGVscGZ1bCBpbiBhbnN3ZXJpbmcgeW91ciByZXNlYXJjaCBxdWVzdGlvbj8gSWYgaXQgaXMgaGVscGZ1bCwgd2lsbCB5b3UgbmVlZCB0byBhZGQvbW9kaWZ5IGFueXRoaW5nIGluIHRoaXMgZ3JhcGggaW4gdGhlIGZpbmFsIHJlcG9ydD8gCgoKIyMgQ29uY2x1c2lvbgoKSW5jbHVkZSB5b3VyIGluaXRpYWwgaW50dWl0aW9uIGFzIHRvIHdoYXQgdGhlIGFuc3dlciB0byB5b3VyIHJlc2VhcmNoIHF1ZXN0aW9uIGlzIHVzaW5nIHRoZSBkYXRhIHNldHMgYW5kIHZpc3VhbGl6YXRpb25zIHlvdSBjcmVhdGVkLiA=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW5pdGlhbCBFREEgQmFzaWMgT3V0bGluZSIKYXV0aG9yOiAiTWFkZWxpbmUgTXVjY2lvbG8sIE1pYSBJY2VsYW5kIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpUaGlzIGlzIGFuIG91dGxpbmUgZm9yIHlvdXIgSW5pdGlhbCBFREEuIFlvdSBjYW4gZm9sbG93IHRoaXMgb3V0bGluZSwgb3IgeW91IGNhbiBtb2RpZnkgaXQgYXMgeW91IHNlZSBmaXQuIERvIHdoYXQgd29ya3MgYmVzdCBmb3IgeW91ciBwcm9qZWN0LiAKCiMjIFJlc2VhcmNoIFF1ZXN0aW9uIAoKT3VyIHByb2plY3QgZGVsdmVzIGludG8gdGhlIHF1ZXN0aW9uIG9mIHdoZXRoZXIgdGhlcmUgaXMgYSBjb3JyZWxhdGlvbiBiZXR3ZWVuIHN1bnNoaW5lIGFuZCBwb3B1bGF0aW9uIGFuZCBwb3B1bGF0aW9uIGdyb3d0aCByYXRlcy4gV2hlbiBjb25zaWRlcmluZyBhbGwgcG9zc2libGUgcmVhc29ucyBhcyB0byB3aHkgcGVvcGxlIGNob29zZSB0byBsaXZlIGluIGNlcnRhaW4gbG9jYXRpb25zLCBpdCBpcyBpbXBvcnRhbnQgdG8gY29uc2lkZXIgYWxsIGNvbnRyaWJ1dGluZyBmYWN0b3JzLS0gc3Vuc2hpbmUgYmVpbmcgb25lLiBTZWFzb25hbCBkZXByZXNzaW9uIGFuZCBtb29kLWNoYW5nZXMgYmFzZWQgb2ZmIHRoZSB3ZWF0aGVyIGlzIGEgc2VyaW91cyBpbXBhY3Qgb24gbWFueSBwZW9wbGVzJyBsaXZlcy4gQXBwbHlpbmcgdGhpcyBrbm93bGVkZ2UsIHN1bnNoaW5lIGNvdWxkIGJlIGFzc29jaWF0ZWQgd2l0aCBjZXJ0YWluIGxvY2F0aW9ucyBoYXZpbmcgYW4gaW5jcmVhc2UgaW4gcG9wdWxhdGlvbiBvdmVyIHRpbWUuIAoKCiMjIERhdGEgUHJvY2Vzc2luZyAKCiMjIyMgRGF0YSBJbnRha2UgCmBgYHtyfQpsaWJyYXJ5KHRpZHl2ZXJzZSkKbGlicmFyeShydmVzdCkKbGlicmFyeShkcGx5cikKYGBgCgpgYGB7cn0Kc3Vuc2hpbmUgPC0gcmVhZC5jc3YoZmlsZSA9ICdDOi9Vc2Vycy9Nb29jaC9PbmVEcml2ZS9Eb2N1bWVudHMvUFNVL3NzdGF0MTg0L1N1bnNoaW5lIGhvdXJzIGZvciBjaXRpZXMgaW4gdGhlIHdvcmxkLmNzdicpCmBgYAotIExvYWRpbmcgaW4gdGhlIHN1bnNoaW5lIGhvdXJzIHBlciBjaXR5IGRhdGEuCgpgYGB7cn0Kc3RyKHN1bnNoaW5lKQpoZWFkKHN1bnNoaW5lKQpzYW1wbGVfbihzdW5zaGluZSwgMTApCm5yb3coc3Vuc2hpbmUpCmBgYAotIFRoZSAqc3Vuc2hpbmUqIGRhdGEgaGFzIDM5MiBjYXNlcyBvZiBpbmRpdmlkdWFsIGNpdGllcyBhY3Jvc3MgdGhlIHdvcmxkIGFuZCB0aGUgbnVtYmVyIG9mIHN1bnNoaW5lIGhvdXJzIHRoZXkgZ2V0IGZvciBlYWNoIG1vbnRoIG9mIHRoZSB5ZWFyLiBUaGUgZGF0YSBhbHNvIGNvbnRhaW5zIHRoZSBjb3VudHJ5IGVhY2ggY2l0eSByZXNpZGVzIGluIGFuZCB0aGUgdG90YWwgbnVtYmVyIG9mIGhvdXJzIG9mIHN1bnNoaW5lIHBlciB5ZWFyLgoKCmBgYHtyfQpDaXR5UG9wdWxhdGlvbnMgPC0gcmVhZF9jc3YoZmlsZSA9ICIvVXNlcnMvbWlhaWNlbGFuZC9MaWJyYXJ5L0Nsb3VkU3RvcmFnZS9PbmVEcml2ZS1UaGVQZW5uc3lsdmFuaWFTdGF0ZVVuaXZlcnNpdHkvU3RhdC0xODQvd29ybGQtY2l0eS1saXN0aW5nLmNzdiIpCmBgYAoKCiMjIyMgRGF0YSBXcmFuZ2xpbmcgCkluY2x1ZGUgUiBjb2RlIGFuZCB3cml0dGVuIGV4cGxhbmF0aW9uIGZvciB3cmFuZ2xpbmcgeW91ciBkYXRhICh5b3UgY2FuIG1ha2UgbXVsdGlwbGUgd3JhbmdsZWQgZGF0YSBzZXRzKS4gCgpgYGB7cn0KQ2l0eVBvcHVsYXRpb25zMSA8LQogIENpdHlQb3B1bGF0aW9ucyAlPiUKICAgIG11dGF0ZShDb3VudHJ5ID0gY291bnRyeSwgQ2l0eSA9IGNpdHksIFBvcHVsYXRpb24yMDIzID0gcG9wMjAyMywgR3Jvd3RoUmF0ZSA9IGdyb3d0aFJhdGUpICU+JQogICAgc2VsZWN0KENvdW50cnksIENpdHksIFBvcHVsYXRpb24yMDIzLCBHcm93dGhSYXRlKSAlPiUKICAgIGZpbHRlcigpICNjaG9vc2Ugd2hpY2ggY2l0aWVzIHdlIHdhbnQgdG8gZXZhbHVhdGUKYGBgCgotTWlhJ3MgRXhwbGFuYXRpb24KCmBgYHtyfQpzdW5zaGluZV9zZWFzb25zIDwtCiAgc3Vuc2hpbmUgJT4lCiAgbXV0YXRlKFdpbnRlcj1KYW4rRmViK01hciwgU3ByaW5nPUFwcitNYXkrSnVuLCBTdW1tZXI9SnVsK0F1ZytTZXAsIEZhbGw9T2N0K05vditEZWMpICU+JQogIHNlbGVjdChDb3VudHJ5LCBDaXR5LCBXaW50ZXIsIFNwcmluZywgU3VtbWVyLCBGYWxsKQoKc3Vuc2hpbmVfc2Vhc29ucwpgYGAKCi0gVGhlIG9yaWdpbmFsIGRhdGEgKnN1bnNoaW5lKiBpcyBhbHJlYWR5IHByZXR0eSBjbGVhbiBkYXRhIGFuZCBkaWQgbm90IG5lZWQgbXVjaCB3cmFuZ2xpbmcgb24gaXRzIG93biwgaG93ZXZlciB0aGVyZSBpcyBkYXRhIHdlIGNhbiBtYW5pcHVsYXRlIGZvciBsYXRlciB1c2FnZS4gCi0gSSBjcmVhdGVkICpzdW5zaGluZV9zZWFzb25zKiB3aGljaCBjb250YWlucyB0aGUgdG90YWwgbnVtYmVyIG9mIGhvdXJzIGZvciAocm91Z2hseSkgZWFjaCBzZWFzb24uIFRlY2huaWNhbGx5IHNlYXNvbnMgdGVuZCB0aGUgc3RhcnQgaW4gdGhlIG1pZGRsZSBvZiBhIG1vbnRoLCBzbyBJIGhhZCB0byBkbyBjb21lIGFwcHJveGltYXRpb24gb24gaG93IEkgc3BsaXQgdGhlIHNlYXNvbnMgdXAuCgoKIyMgRGF0YSBWaXN1YWxpemF0aW9uCgojIyMjIFBsb3QgMQoKSW5jbHVkZSBSIGNvZGUgdG8gbWFrZSBvbmUgZGF0YSB2aXN1YWxpemF0aW9uIChJIHdvdWxkIGVuY291cmFnZSB5b3UgdG8gdXNlIDMgb3IgbW9yZSB2YXJpYWJsZXMpLiBJbmNsdWRlIGEgYnJpZWYgd3JpdHRlbiBkZXNjcmlwdGlvbiBvZiB3aGF0IHlvdXIgZ3JhcGggc2hvd3MuIElzIHRoaXMgZ3JhcGggaGVscGZ1bCBpbiBhbnN3ZXJpbmcgeW91ciByZXNlYXJjaCBxdWVzdGlvbj8gSWYgaXQgaXMgaGVscGZ1bCwgd2lsbCB5b3UgbmVlZCB0byBhZGQvbW9kaWZ5IGFueXRoaW5nIGluIHRoaXMgZ3JhcGggaW4gdGhlIGZpbmFsIHJlcG9ydD8gCgojIyMjIFBsb3QgMgoKSW5jbHVkZSBSIGNvZGUgdG8gbWFrZSBvbmUgZGF0YSB2aXN1YWxpemF0aW9uIChJIHdvdWxkIGVuY291cmFnZSB5b3UgdG8gdXNlIDMgb3IgbW9yZSB2YXJpYWJsZXMpLiBJbmNsdWRlIGEgYnJpZWYgd3JpdHRlbiBkZXNjcmlwdGlvbiBvZiB3aGF0IHlvdXIgZ3JhcGggc2hvd3MuIElzIHRoaXMgZ3JhcGggaGVscGZ1bCBpbiBhbnN3ZXJpbmcgeW91ciByZXNlYXJjaCBxdWVzdGlvbj8gSWYgaXQgaXMgaGVscGZ1bCwgd2lsbCB5b3UgbmVlZCB0byBhZGQvbW9kaWZ5IGFueXRoaW5nIGluIHRoaXMgZ3JhcGggaW4gdGhlIGZpbmFsIHJlcG9ydD8gCgoKIyMgQ29uY2x1c2lvbgoKSW5jbHVkZSB5b3VyIGluaXRpYWwgaW50dWl0aW9uIGFzIHRvIHdoYXQgdGhlIGFuc3dlciB0byB5b3VyIHJlc2VhcmNoIHF1ZXN0aW9uIGlzIHVzaW5nIHRoZSBkYXRhIHNldHMgYW5kIHZpc3VhbGl6YXRpb25zIHlvdSBjcmVhdGVkLiA=</div>
 
 
 

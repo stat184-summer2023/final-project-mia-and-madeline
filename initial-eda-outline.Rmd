@@ -1,6 +1,6 @@
 ---
 title: "Initial EDA Basic Outline"
-author: "Mia and Madeline"
+author: "Madeline Mucciolo, Mia Iceland"
 output: html_notebook
 ---
 
@@ -14,23 +14,55 @@ Our project delves into the question of whether there is a correlation between s
 ## Data Processing 
 
 #### Data Intake 
-
-Include R code and written explanation to import your **TWO** data sets.
-
+```{r}
 library(tidyverse)
+library(rvest)
+library(dplyr)
+```
 
+```{r}
+sunshine <- read.csv(file = 'C:/Users/Mooch/OneDrive/Documents/PSU/sstat184/Sunshine hours for cities in the world.csv')
+```
+- Loading in the sunshine hours per city data.
+
+```{r}
+str(sunshine)
+head(sunshine)
+sample_n(sunshine, 10)
+nrow(sunshine)
+```
+- The *sunshine* data has 392 cases of individual cities across the world and the number of sunshine hours they get for each month of the year. The data also contains the country each city resides in and the total number of hours of sunshine per year.
+
+
+```{r}
 CityPopulations <- read_csv(file = "/Users/miaiceland/Library/CloudStorage/OneDrive-ThePennsylvaniaStateUniversity/Stat-184/world-city-listing.csv")
+```
 
 
 #### Data Wrangling 
-
 Include R code and written explanation for wrangling your data (you can make multiple wrangled data sets). 
 
+```{r}
 CityPopulations1 <-
   CityPopulations %>%
     mutate(Country = country, City = city, Population2023 = pop2023, GrowthRate = growthRate) %>%
     select(Country, City, Population2023, GrowthRate) %>%
     filter() #choose which cities we want to evaluate
+```
+
+-Mia's Explanation
+
+```{r}
+sunshine_seasons <-
+  sunshine %>%
+  mutate(Winter=Jan+Feb+Mar, Spring=Apr+May+Jun, Summer=Jul+Aug+Sep, Fall=Oct+Nov+Dec) %>%
+  select(Country, City, Winter, Spring, Summer, Fall)
+
+sunshine_seasons
+```
+
+- The original data *sunshine* is already pretty clean data and did not need much wrangling on its own, however there is data we can manipulate for later usage. 
+- I created *sunshine_seasons* which contains the total number of hours for (roughly) each season. Technically seasons tend the start in the middle of a month, so I had to do come approximation on how I split the seasons up.
 
 
 ## Data Visualization
