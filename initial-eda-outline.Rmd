@@ -92,7 +92,7 @@ sunshine_seasons
 ##### city latitude/longitude data
 - This data contains a lot of information that is not needed for our purposes: there are extraneous variables and cases that are duplicated to makeup for different spellings of cities. To eliminate this extra data, I will use **select()** to keep only the columns we need and join the table with the *CityPopulations1* cities to only keep the cities we need.
 
-![city_loc data wrangling](C:city_loc_wrangle.png)
+![city_loc data wrangling](city_loc_wrangle.png)
 - Although the tables are now joined, the *city_loc* data contained multiple locations for many of the cities, presumably to represent different corners of each. To combat this, I will take the average of the longitude and latitude for each city and use the new numbers as the primary location for each city.
 ```{r}
 city_loc <-
