@@ -88,7 +88,7 @@ CityPopulations1 <-
 
 #### Plot 1
 
-Include R code to make one data visualization (I would encourage you to use 3 or more variables). Include a brief written description of what your graph shows. Is this graph helpful in answering your research question? If it is helpful, will you need to add/modify anything in this graph in the final report? 
+Include R code to make one data visualization (I would encourage you to use 3 or more variables). Include a brief written description of what your graph shows. Is this graph helpful in answering your research question? If it is helpful, will you need to add/modify anything in this graph in the final report? Sunshine hours v. growth rate
 
 #### Plot 2
 
