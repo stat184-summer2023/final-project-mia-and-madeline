@@ -2091,17 +2091,31 @@ population growth rate of a city (country and growth rate).</li>
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQ2l0eVBvcHVsYXRpb25zMSA8LVxuICBDaXR5UG9wdWxhdGlvbnMgJT4lXG4gICAgbXV0YXRlKENvdW50cnkgPSBjb3VudHJ5LCBDaXR5ID0gY2l0eSwgUG9wdWxhdGlvbjIwMjMgPSBwb3AyMDIzLCBHcm93dGhSYXRlID0gZ3Jvd3RoUmF0ZSkgJT4lXG4gICAgc2VsZWN0KENvdW50cnksIEdyb3d0aFJhdGUpXG5cbmBgYCJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MTAsIm5jb2wiOjIsInN1bW1hcnkiOnsiQSB0aWJibGUiOlsiMTAgw5cgMiJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUF3dHlpVERtaXVCaVlHQmdabUJoQnBLc1FDWURhMmlJbTY0RkF3TUxFNUREeU1EQ3dBbWlLNERTd2tBR1NGQUFpTG1nRWp6QmlhVXBtUXFPUllsSm1ZbFFNWGFuMUp6MHpOSmNLSmZWTXk4RkllZVlrNTVhaE9ENjVoZmxKeWZudzVRNloyVG1KV0xUeHhaU1dwU2RXZ25sTVhuNm9lcGdZT0FET2NxK1p3MkhvZHJMU3ZzS3Jaa0crM2pmMmsrWXRudkc4VWROOWhOTldGNTU5WWphVDZocDJYcm5tTDM5MUxUempwK0VydHZQbUZ5eUo2dnVsLzJzK2Z2S1RteXgzRjhCNVUvbWZuRHZVc2M1dEZCZ3pVdk1UUzJHaGdBVHpBdk8rYVY1SlVVd3AzRzVGK1dYbDJRRUpaYWtvdW5tQkVyb3dVemdCWm5RQUNUKy8vLy9EZDJhNUp6RVlwZzFNRUd1bE1TU1JMMjBJcUIrSU84Zm1oYjIvSUtTelB3OG9DWW1VQ3l4b21sbUxFSVQ0Qy9OQTdra1JUYzVvelF2VzljUUhLTWdhUWpnaGJLNWtOaE1FQ3VaL2tPTllvWEZUR3BlZW1aZUtzenRPWWxKcVRsUURoL1F4MkFQNnhVVVplYVZ3SHdDRkMzV0s4a3ZTWVNwNDByT3o0R0pnUDNHOEE4QTk4VGI0NXdDQUFBPSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["GrowthRate"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Saudi Arabia","2":"0.0140"},{"1":"Belgium","2":"0.0059"},{"1":"India","2":"0.0162"},{"1":"Algeria","2":"0.0168"},{"1":"Morocco","2":"0.0161"},{"1":"China","2":"0.0209"},{"1":"India","2":"0.0240"},{"1":"Turkey","2":"0.0260"},{"1":"IN","2":"-0.0060"},{"1":"China","2":"0.0186"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2FtcGxlX24oQ2l0eVBvcHVsYXRpb25zMSwxMClcblxuc2FtcGxlX24oQ2l0eVBvcHVsYXRpb25zMSwxMClcbmBgYCJ9 -->
+<pre class="r"><code>sample_n(CityPopulations1,10)
+
+sample_n(CityPopulations1,10)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MTAsIm5jb2wiOjIsInN1bW1hcnkiOnsiQSB0aWJibGUiOlsiMTAgw5cgMiJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUF3dHlpVERtaXVCaVlHQmdabUJoQnBLc1FDWURhMmlJbTY0RkF3TUxFNUREeU1EQ3dBbWlLNERTd2tBR1NGQUFpTG1nRXF5ZWVTbVppVmc1emhtWmVUQU9tMXRSWWw1eUtqWXBudUQ4MHBJTUJjZTBvc3hrbUJoN2FGRnBlbWxpSlpRckVwcVhXWkthb3VCWWxKaWs0SnFiV1pSWWtsb01sZU1NenN4TFR5eklMMEl6bklHQkQrUk0rK25GRW44Q1BNVHRwL3JNaUdmN05zVitTc0txbEVNL0xPd3J0R1lhN09OOWF6K1orOEc5U3gzbjdQdmU3TjhZSFc1dlg1RGtlK25qeWovMmsxajNNQzdPMDdldnZoVW9lWTQ5M243aVJUL3JzNllyME1LRk5TOHhGK2dVU0pnd3dWenZuRithVjFJRWN6MlhlMUYrZVVsR0VORFJhTG81Z1JKNk1CTjRRU1kwQUluLy8vOS9RN2NtT1NleEdHWU5USkFySmJFa1VTK3RDS2dmeVB1SHBvVTl2NkFrTXo4UHFJa0pGRytzYUpvWmk5QUUrRXZ6UUM1SjBVM09LTTNMMWpVRXh6RklHZ0o0b1d3dUpEWVR4RXFtLzFDaldHR1JuWnFYbnBrSGo0K2N4S1RVSENpSEQraGpzSWYxQ29veTgwcGdQZ0dLRnV1VjVKY2t3dFJ4SmVmbndFVEFmbVA0QndDSDVCcmJyZ0lBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["GrowthRate"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"India","2":"0.0229"},{"1":"India","2":"0.0208"},{"1":"China","2":"0.0199"},{"1":"France","2":"0.0059"},{"1":"China","2":"0.0186"},{"1":"South Africa","2":"0.0151"},{"1":"Uruguay","2":"0.0040"},{"1":"United Arab Emirates","2":"0.0176"},{"1":"Singapore","2":"0.0068"},{"1":"China","2":"0.0174"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQ2l0eVBvcHVsYXRpb25zMSA8LVxuICBDaXR5UG9wdWxhdGlvbnMgJT4lXG4gICAgbXV0YXRlKENvdW50cnkgPSBjb3VudHJ5LCBDaXR5ID0gY2l0eSwgUG9wdWxhdGlvbjIwMjMgPSBwb3AyMDIzLCBHcm93dGhSYXRlID0gZ3Jvd3RoUmF0ZSkgJT4lXG4gICAgc2VsZWN0KENvdW50cnksIEdyb3d0aFJhdGUpXG5gYGAifQ== -->
 <pre class="r"><code>CityPopulations1 &lt;-
   CityPopulations %&gt;%
     mutate(Country = country, City = city, Population2023 = pop2023, GrowthRate = growthRate) %&gt;%
-    select(Country, GrowthRate)
-</code></pre>
+    select(Country, GrowthRate)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gQ2l0eVBvcHVsYXRpb25zICU+JSBtdXRhdGUoQ291bnRyeSA9IGNvdW50cnksIENpdHkgPSBjaXR5LCBQb3B1bGF0aW9uMjAyMyA9IHBvcDIwMjMsICA6IFxuICBjb3VsZCBub3QgZmluZCBmdW5jdGlvbiBcIiU+JVwiXG4ifQ== -->
-<pre><code>Error in CityPopulations %&gt;% mutate(Country = country, City = city, Population2023 = pop2023,  : 
-  could not find function &quot;%&gt;%&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
