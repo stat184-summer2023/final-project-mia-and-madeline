@@ -176,6 +176,7 @@ CityPopulations1 <-
   CityPopulations %>%
     mutate(Country = country, City = city, Population2023 = pop2023, GrowthRate = growthRate) %>%
     select(Country, GrowthRate)
+sample_n(CityPopulations1,10)
 ```
 
 
