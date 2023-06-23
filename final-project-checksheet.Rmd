@@ -60,11 +60,11 @@ The official rubric can be found on the "Submit Final Project Report" on Canvas.
 *Description: Students need not use every function and method introduced in STAT 184, but clear demonstration of proficiency should include a range of useful of data visualizations that are (1) relevant to stated research question for the analysis, (2) include at least one effective display of many--at least 3--variables, and (3) include 3 of the following 5 visualization techniques learned in STAT 184: (+) use of multiple geoms such as points, density, lines, segments, boxplots, bar charts, histograms, etc (+) use of multiple aesthetics--not necessarily all in the same graph--such as color, size, shape, x/y position, facets, etc (+) layered graphics such as points and accompanying smoother, points and accompanying boxplots, overlaid density distributions, etc (+) leaflet maps (+) decision tree and/or dendograms*
 
 
-(A) .Rmd Line number(s) for use of multiple different geoms on a single plot:  
+X (A) .Rmd Line number(s) for use of multiple different geoms on a single plot:  
 
-(B) .Rmd Line number(s) for use of multiple aesthetics:  
+X (B) .Rmd Line number(s) for use of multiple aesthetics:  
 
-(C) .Rmd Line number(s) for use of layered graphics:  
+X (C) .Rmd Line number(s) for use of layered graphics:  
 
 (D) .Rmd Line number(s) for use of maps:  
 
