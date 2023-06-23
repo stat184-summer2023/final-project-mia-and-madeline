@@ -23,7 +23,7 @@ library(dplyr)
 
 
 ##### Sunshine Hours Data
-
+- The *sunshine* data has 392 cases of individual cities across the world and the number of sunshine hours they get for each month of the year. The data also contains the country each city resides in and the total number of hours of sunshine per year. 
 ```{r}
 sunshine <- read.csv(file = 'Sunshine hours for cities in the world.csv')
 
@@ -34,12 +34,11 @@ nrow(sunshine)
 ```
 
 
-##### City Latitude/Longitude Aata
+##### City Latitude/Longitude Data
 
 - The original data set I downloaded was too big for GitHub, so I had to process and wrangle the data in a seperate RScript, save the new csv file and then import it here. I will include images of the coding work I did.
 ![city_loc intake](city_loc_intake.png)
 - This data set is the already wrangled version (image of the wrangling done below in *Data Wrangling* section).
-
 ```{r}
 city_loc <- read_csv(file="city_loc.csv")
 
@@ -65,7 +64,7 @@ head(country_tour)
 
 ##### City Population Data
 
-- This data set contains city and country name as well as the population of 2022, 2023, growth rate, type (world versus USA), and rank (1 being the most populated city, 778 being the least populated). We plan on using this this table to see the correlation between the amount of sunshine a city gets and its population. We will be using the growth rate so that regardless of the different sizes of cities, we can evalute the changes in population equally.
+- This data set contains city and country name as well as the population of 2022, 2023, growth rate, type (world versus USA), and rank (1 being the most populated city, 778 being the least populated). We plan on using this this table to see the correlation between the amount of sunshine a city gets and its population. We will be using the growth rate so that regardless of the different sizes of cities, we can evaluate the changes in population equally.
 ```{r}
 CityPopulations <- read_csv(file = "world-city-listing.csv")
 
