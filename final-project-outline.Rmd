@@ -4,19 +4,77 @@ author: "Mia and Madeline"
 output: html_notebook
 ---
 
-This is an outline for your final project. You can follow this outline, or you can modify it as you see fit. Do what works best for your project. 
-
 ## Research Question 
 
 Our project delves into the question of whether there is a correlation between climate and population movement for different countries. When considering all possible reasons as to why people choose to live in certain locations, it is important to consider all contributing factors-- sunshine, tourism, latitude being a few. Seasonal depression and mood-changes based off the weather is a serious impact on many peoples' lives. Applying this knowledge, climate could be associated with certain locations having an increase in population and tourism over time. 
-
 
 
 ## Data Processing 
 
 #### Data Intake 
 
-Include R code and written explanation to import your **TWO** data sets.
+##### Loading in Basic Packages
+
+```{r}
+library(tidyverse)
+library(rvest)
+library(dplyr)
+```
+
+
+##### Sunshine Hours Data
+
+```{r}
+sunshine <- read.csv(file = 'Sunshine hours for cities in the world.csv')
+
+str(sunshine)
+head(sunshine)
+sample_n(sunshine, 10)
+nrow(sunshine)
+```
+
+
+##### City Latitude/Longitude Aata
+
+- The original data set I downloaded was too big for GitHub, so I had to process and wrangle the data in a seperate RScript, save the new csv file and then import it here. I will include images of the coding work I did.
+![city_loc intake](city_loc_intake.png)
+- This data set is the already wrangled version (image of the wrangling done below in *Data Wrangling* section).
+
+```{r}
+city_loc <- read_csv(file="city_loc.csv")
+
+str(city_loc)
+sample_n(city_loc, 10)
+nrow(city_loc)
+head(city_loc)
+```  
+
+
+##### Country Tourism Data
+
+- Another interesting observation about a country and its sunshine hours pertains to tourism rates. If a country is more desirable (by having more sunshine hours [?]) it will bring in more tourists. This data measures the amount of tourism dollars spent in different countries over the course of many years (in US dollars).
+```{r}
+country_tour <- read.csv("tourism-recipts.csv")
+
+str(country_tour)
+sample_n(country_tour, 10)
+nrow(country_tour)
+head(country_tour)
+```
+
+
+##### City Population Data
+
+- This data set contains city and country name as well as the population of 2022, 2023, growth rate, type (world versus USA), and rank (1 being the most populated city, 778 being the least populated). We plan on using this this table to see the correlation between the amount of sunshine a city gets and its population. We will be using the growth rate so that regardless of the different sizes of cities, we can evalute the changes in population equally.
+```{r}
+CityPopulations <- read_csv(file = "world-city-listing.csv")
+
+str(CityPopulations)
+head(CityPopulations)
+sample_n(CityPopulations, 10)
+nrow(CityPopulations)
+```
+
 
 #### Data Wrangling 
 
