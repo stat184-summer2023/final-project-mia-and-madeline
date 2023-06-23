@@ -14,7 +14,9 @@ Our project delves into the question of whether there is a correlation between s
 ## Data Processing 
 
 #### Data Intake 
+
 ##### loading in basic packages
+
 ```{r}
 library(tidyverse)
 library(rvest)
@@ -24,6 +26,7 @@ library(dplyr)
 
 
 ##### sunshine hours data
+
 ```{r}
 sunshine <- read.csv(file = 'Sunshine hours for cities in the world.csv')
 ```
@@ -39,6 +42,7 @@ nrow(sunshine)
 
 
 ##### city latitude/longitude data
+
 - The original data set I downloaded was too big for GitHub, so I had to process and wrangle the data in a seperate RScript, save the new csv file and then import it here. I will include images of the coding work I did.
 ![city_loc intake](city_loc_intake.png)
 - This data set is the already wrangled version (image of the wrangling done below in *Data Wrangling* section).
@@ -49,6 +53,7 @@ city_loc <- read_csv(file="city_loc.csv")
 
 
 ##### country tourism data
+
 - Another interesting observation about a country and its sunshine hours pertains to tourism rates. If a country is more desirable (by having more sunshine hours [?]) it will bring in more tourists. This data measures the amount of tourism dollars spent in different countries over the course of many years (in US dollars).
 ```{r}
 country_tour <- read.csv("tourism-recipts.csv")
@@ -59,6 +64,7 @@ sample_n(country_tour, 10)
 
 
 ##### city population data
+
 - This data set contains city and country name as well as the population of 2022, 2023, growth rate, type (world versus USA), and rank (1 being the most populated city, 778 being the least populated). We plan on using this this table to see the correlation between the amount of sunshine a city gets and its population. We will be using the growth rate so that regardless of the different sizes of cities, we can evalute the changes in population equally.
 ```{r}
 CityPopulations <- read_csv(file = "world-city-listing.csv")
@@ -76,6 +82,7 @@ nrow(CityPopulations)
 #### Data Wrangling 
 
 ##### sunshine hours data
+
 ```{r}
 sunshine_seasons <-
   sunshine %>%
@@ -90,6 +97,7 @@ sunshine_seasons
 
 
 ##### city latitude/longitude data
+
 - This data contains a lot of information that is not needed for our purposes: there are extraneous variables and cases that are duplicated to makeup for different spellings of cities. To eliminate this extra data, I will use **select()** to keep only the columns we need and join the table with the *CityPopulations1* cities to only keep the cities we need.
 
 ![city_loc data wrangling](city_loc_wrangle.png)
@@ -136,6 +144,7 @@ city_loc_types
 
 
 ##### country tourism data
+
 - After in taking the data, some things that need adjustment in the data: pick only one year to use for the tourism income (to cut down on the data), rename the variables, get rid of the country codes and divide the values into smaller numbers, since they are quite large.
 ```{r}
 country_tour <-
@@ -162,7 +171,7 @@ sample_n(country_tour,10)
 country_tour<-
   country_tour %>%
   mutate(income = as.integer(income/100000)) %>%
-  rename(income = "tourism income (/100,000)" = income, Country=name)
+  rename("tourism income (by 100,000)" = income, Country=name)
 sample_n(country_tour,10)
 ```
 - After dividing the income by $100,000 and renaming the variable, this data is ready for use.
@@ -170,6 +179,7 @@ sample_n(country_tour,10)
 
 
 ##### city population data
+
 - I renamed the variables so that they are easier to read. I, then, selected only the variables that we will be needing to evaluate the population growth rate of a city (country and growth rate).
 ```{r}
 CityPopulations1 <-
@@ -183,6 +193,7 @@ sample_n(CityPopulations1,10)
 ## Data Visualization
 
 #### Plot 1
+
 ##### Tourism & Sunshine Hours (by Country)
 
 - This graph will compare tourism income (in 2016) and sunshine hours for countries. The plot will not focus on each individual country, but rather the trend/correlation between the two.
@@ -203,7 +214,7 @@ sunshine_graph_data <-
 sunshine_graph_data %>% #use sunshine for left_join, since it contains less countries than country_tour, so there will be less extra
   left_join(country_tour) %>%
   na.omit() %>%
-  rename(tour = 'tourism income (/100,000)') %>% #renaming bc the previous name would not allow proper graphing
+  rename(tour = 'tourism income (by 100,000)') %>% #renaming bc the previous name would not allow proper graphing
   filter(tour<1000000) %>% # removing outlier (the US)
   ggplot() + geom_point(aes(x=sun_hours_year, y=tour, color = type))
 ```
@@ -211,6 +222,7 @@ Despite speculation, It does not seem that there is any correlation between a co
 
 
 #### Plot 2
+
 ##### Population Growth Rates & Sunshine Hours (by Country)
 
 
