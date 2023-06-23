@@ -8,7 +8,7 @@ This is an outline for your final project. You can follow this outline, or you c
 
 ## Research Question 
 
-State your general specific question and why it is interesting. 
+Our project delves into the question of whether there is a correlation between climate and population movement for different countries. When considering all possible reasons as to why people choose to live in certain locations, it is important to consider all contributing factors-- sunshine, tourism, latitude being a few. Seasonal depression and mood-changes based off the weather is a serious impact on many peoples' lives. Applying this knowledge, climate could be associated with certain locations having an increase in population and tourism over time. 
 
 
 
