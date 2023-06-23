@@ -163,6 +163,7 @@ country_tour<-
   country_tour %>%
   mutate(income = as.integer(income/100000)) %>%
   rename(income = "tourism income (/100,000)" = income, Country=name)
+
 sample_n(country_tour,10)
 ```
 - After dividing the income by $100,000 and renaming the variable, this data is ready for use.
