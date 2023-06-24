@@ -23,10 +23,10 @@ The official rubric can be found on the "Submit Final Project Report" on Canvas.
 *Description: (1) Analysis includes at least two different data sources. (2) Primary data source may NOT be loaded from an R package--though supporting data may. (3) Access to all data sources is contained within the analysis. (4) All imported data is inspected at beginning of analysis using one or more R functions: e.g., str, glimpse, head, tail, names, nrow, etc*
 
 (A) .Rmd Line numbers where at least two different data sources are imported:  
-
+29,44,57,70
 
 (B) .Rmd Line numbers for inspecting data intake:  
-
+31-34, 46-49, 59-62, 72-75
 
 ### Data Wrangling (5 out of 7 required)
 
@@ -60,11 +60,11 @@ The official rubric can be found on the "Submit Final Project Report" on Canvas.
 *Description: Students need not use every function and method introduced in STAT 184, but clear demonstration of proficiency should include a range of useful of data visualizations that are (1) relevant to stated research question for the analysis, (2) include at least one effective display of many--at least 3--variables, and (3) include 3 of the following 5 visualization techniques learned in STAT 184: (+) use of multiple geoms such as points, density, lines, segments, boxplots, bar charts, histograms, etc (+) use of multiple aesthetics--not necessarily all in the same graph--such as color, size, shape, x/y position, facets, etc (+) layered graphics such as points and accompanying smoother, points and accompanying boxplots, overlaid density distributions, etc (+) leaflet maps (+) decision tree and/or dendograms*
 
 
-X (A) .Rmd Line number(s) for use of multiple different geoms on a single plot:  
+(A) .Rmd Line number(s) for use of multiple different geoms on a single plot:  
 
-X (B) .Rmd Line number(s) for use of multiple aesthetics:  
+(B) .Rmd Line number(s) for use of multiple aesthetics:  
 
-X (C) .Rmd Line number(s) for use of layered graphics:  
+(C) .Rmd Line number(s) for use of layered graphics:  
 
 (D) .Rmd Line number(s) for use of maps:  
 
