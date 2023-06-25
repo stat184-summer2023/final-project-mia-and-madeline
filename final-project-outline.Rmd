@@ -113,6 +113,21 @@ city_loc <-
 
 - In the graphic the lines for different latitude subsections are shown. I will be using these to split up countries. *tropical* is anywhere from lat -23.5 to 23.5, *moderate* is from -23.5 to -66 and 23.5 to 66 and *poles* will be the rest.
 ```{r}
+city_loc <-
+  city_loc %>%
+  na.omit()
+
+for(i in 1:length(city_loc$Latitude)){
+  if((city_loc$Latitude[i]>=(-23.5)) && (city_loc$Latitude[i]<=23.5)){
+    city_loc$climate[i] = "tropical"
+    }
+  else if(city_loc$Latitude[i]>=(-66) && city_loc$Latitude[i]<(-23.5) || city_loc$Latitude[i]<=(66) && city_loc$Latitude[i]>(23.5)){
+    city_loc$climate[i] = "moderate"
+    }
+  else city_loc$climate[i] = "poles"
+}
+```
+```{r}
 city_loc_tropical <-
   city_loc %>%
   filter(Latitude>=(-23.5) && Latitude<=(23.5)) %>%

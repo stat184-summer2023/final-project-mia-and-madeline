@@ -121,19 +121,25 @@ city_loc <-
 city_loc
 ```
 ```{r}
-city_loc <-
+city_loc_tropical <-
   city_loc %>%
-  na.omit()
+  filter(Latitude>=(-23.5) && Latitude<=(23.5)) %>%
+  mutate(type = "tropical")
 
-for(i in 1:length(city_loc$Latitude)){
-  if((city_loc$Latitude[i]>=(-23.5)) && (city_loc$Latitude[i]<=23.5)){
-    city_loc$climate[i] = "tropical"
-    }
-  else if(city_loc$Latitude[i]>=(-66) && city_loc$Latitude[i]<(-23.5) || city_loc$Latitude[i]<=(66) && city_loc$Latitude[i]>(23.5)){
-    city_loc$climate[i] = "moderate"
-    }
-  else city_loc$climate[i] = "poles"
-}
+city_loc_moderate <-
+  city_loc %>%
+  filter(Latitude>=(-66) && Latitude<(-23.5) || Latitude<=(66) && Latitude>(23.5)) %>%
+  mutate(type = "moderate")
+
+city_loc_poles <-
+  city_loc %>%
+  filter(Latitude<(-66) || Latitude>(66)) %>%
+  mutate(type = 'poles')
+
+city_loc_types <-
+  bind_rows(city_loc_moderate, city_loc_tropical) # there are no cities (in this data) in the poles, so i am not including it
+
+city_loc_types
 ```
 
 - Now we know the precise locations of the cities, which will be useful to group cities by their locations (and thus sunshine hours and climate) and compare data from there.
