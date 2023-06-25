@@ -60,6 +60,11 @@ country_tour <- read.csv("tourism-recipts.csv")
 str(country_tour)
 sample_n(country_tour, 10)
 ```
+```{r}
+country_tour %>% 
+  rename(value = 'value_.') %>%
+  pivot_wider(names_from = year, values_from = value)
+```
   
 
 
