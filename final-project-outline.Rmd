@@ -17,70 +17,59 @@ output: html_notebook
 
 ```{r}
 library(tidyverse)
-library(rvest)
 library(dplyr)
 ```
 
+### Sunshine Hours Data
 
-##### Sunshine Hours Data
-
-- The *sunshine* data has 392 cases of individual cities across the world and the number of sunshine hours they get for each month of the year. The data also contains the country each city resides in and the total number of hours of sunshine per year. 
+- The *sunshine* data has 392 cases of individual cities across the world and the total number of sunshine hours they get per month. The data also contains the country each city resides in and the total number of hours of sunshine per year. This data was found on Kaggle (https://www.kaggle.com/datasets/bilalwaseer/sunshine-hours-for-cities-around-the-world) and was published by *Muhammad Bilal Hussain* at the beggining of 2023. 
 ```{r}
 sunshine <- read.csv(file = 'Sunshine hours for cities in the world.csv')
 
 str(sunshine)
-head(sunshine)
 sample_n(sunshine, 10)
-nrow(sunshine)
 ```
 
+### City Latitude/Longitude Data
 
-##### City Latitude/Longitude Data
-
-- The original data set I downloaded was too big for GitHub, so I had to process and wrangle the data in a seperate RScript, save the new csv file and then import it here. I will include images of the coding work I did.
+- The original data set was too big for GitHub, so the data had to be processed and wrangled in a separate RScript, then saved into a new csv file and imported into this file. Images of the coding work are included.
 ![city_loc intake](city_loc_intake.png)
 - This data set is the already wrangled version (image of the wrangling done below in *Data Wrangling* section).
+- Data was found on Kaggle (https://www.kaggle.com/datasets/max-mind/world-cities-database) and was posted by *Max Mind*.
 ```{r}
 city_loc <- read_csv(file="city_loc.csv")
 
 str(city_loc)
 sample_n(city_loc, 10)
-nrow(city_loc)
-head(city_loc)
 ```  
 
+### Country Tourism Data
 
-##### Country Tourism Data
-
-- Another interesting observation about a country and its sunshine hours pertains to tourism rates. If a country is more desirable (by having more sunshine hours [?]) it will bring in more tourists. This data measures the amount of tourism dollars spent in different countries over the course of many years (in US dollars).
+- Another way to represent the correlation between climate and human population movement, is looking at a locations climate and tourism rates. 
+- This data measures the amount of tourism dollars spent in different countries over the course of selected years (in US dollars).
+- Dataset was found on Kaggle (https://www.kaggle.com/datasets/abdulhamitcelik/international-tourism-receipts) and was posted by *Abdulhamit Celik*.
 ```{r}
 country_tour <- read.csv("tourism-recipts.csv")
 
 str(country_tour)
 sample_n(country_tour, 10)
-nrow(country_tour)
-head(country_tour)
 ```
 
 
 ##### City Population Data
 
 - This data set contains city and country name as well as the population of 2022, 2023, growth rate, type (world versus USA), and rank (1 being the most populated city, 778 being the least populated). We plan on using this this table to see the correlation between the amount of sunshine a city gets and its population. We will be using the growth rate so that regardless of the different sizes of cities, we can evaluate the changes in population equally.
+- This data was found on World Population Review (https://worldpopulationreview.com/world-cities).
 ```{r}
 CityPopulations <- read_csv(file = "world-city-listing.csv")
 
 str(CityPopulations)
-head(CityPopulations)
 sample_n(CityPopulations, 10)
-nrow(CityPopulations)
 ```
 
+# Data Wrangling 
 
-## Data Wrangling 
-
-Include R code and written explanation for wangling your data (you can make multiple wrangled data sets). 
-
-##### Sunshine Hours Data
+### Sunshine Hours Data
 
 - The original data *sunshine* is already pretty clean data and did not need much wrangling on its own, however there is data we can manipulate for later usage. 
 - I created *sunshine_seasons* which contains the total number of hours for (roughly) each season. Technically seasons tend the start in the middle of a month, so I had to do come approximation on how I split the seasons up. 
@@ -93,11 +82,9 @@ sunshine_seasons <-
 sunshine_seasons
 ```
 
-
-##### City Latitude/Longitude Data
+### City Latitude/Longitude Data
 
 - This data contains a lot of information that is not needed for our purposes: there are extraneous variables and cases that are duplicated to makeup for different spellings of cities. To eliminate this extra data, I will use **select()** to keep only the columns we need and join the table with the *CityPopulations1* cities to only keep the cities we need.
-
 ![city_loc data wrangling](city_loc_wrangle.png)
 - Although the tables are now joined, the *city_loc* data contained multiple locations for many of the cities, presumably to represent different corners of each. To combat this, I will take the average of the longitude and latitude for each city and use the new numbers as the primary location for each city.
 ```{r}
@@ -110,7 +97,6 @@ city_loc <-
 ```
 
 ![major latitude lines. Source: TopperLearning.com](latitude_longitude.png)
-
 - In the graphic the lines for different latitude subsections are shown. I will be using these to split up countries. *tropical* is anywhere from lat -23.5 to 23.5, *moderate* is from -23.5 to -66 and 23.5 to 66 and *poles* will be the rest.
 ```{r}
 city_loc <-
@@ -131,7 +117,7 @@ for(i in 1:length(city_loc$Latitude)){
 - Now we know the precise locations of the cities, which will be useful to group cities by their locations (and thus sunshine hours and climate) and compare data from there.
 
 
-##### Country Tourism Data
+### Country Tourism Data
 
 - After in taking the data, some things that need adjustment in the data: pick only one year to use for the tourism income (to cut down on the data), rename the variables, get rid of the country codes and divide the values into smaller numbers, since they are quite large.
 ```{r}
@@ -140,7 +126,6 @@ country_tour <-
   rename(income='value_.') %>%
   select(name, year, income) 
 ```
-
 
 - In order to find the most useful year, I am going to **group_by()** year and find a year that is relatively recent (>=2015) and contains the most countries with data for that year.
 ```{r}
@@ -168,11 +153,10 @@ country_tour<-
 
 sample_n(country_tour,10)
 ```
-
 - After dividing the income by $100,000 and renaming the variable, this data is ready for use.
 
 
-##### City Population Data
+### City Population Data
 
 - I renamed the variables so that they are easier to read. I, then, selected only the variables that we will be needing to evaluate the population growth rate of a city (country and growth rate).
 ```{r}
@@ -185,10 +169,7 @@ sample_n(CityPopulations1,10)
 ```
 
 
-## Data Visualization
-
-Include R code and written explanation for your data visualization(s) with at least 3 variables. You must have **at least** one graph. You may have more than one (I would encourage you to have more than one). 
-
+# Data Visualization
 ```{r}
 
 sunshine_graph_data %>% #use sunshine for left_join, since it contains less countries than CityPopulations1
@@ -228,7 +209,7 @@ latitude_graph_data %>%
 
 ```
 
-## Conclusion
+# Conclusion
 
 Answer your research question using the data sets and visualizations you created. 
 
