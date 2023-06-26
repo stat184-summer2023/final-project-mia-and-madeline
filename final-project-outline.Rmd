@@ -18,7 +18,9 @@ library(tidyverse)
 library(dplyr)
 ```
 
-### Sunshine Hours Data
+## Climate Data
+
+### Sunshine Hours
 
 ```{r}
 sunshine <- read.csv(file = 'Sunshine hours for cities in the world.csv') # import csv in df
@@ -29,7 +31,7 @@ sample_n(sunshine, 10)
 - The *sunshine* data has 392 cases of individual cities across the world and the total number of sunshine hours they get per month. The data also contains the country each city resides in and the total number of hours of sunshine per year. 
 - This data was found on Kaggle (https://www.kaggle.com/datasets/bilalwaseer/sunshine-hours-for-cities-around-the-world) and was published by *Muhammad Bilal Hussain* at the beggining of 2023. 
 
-### City Latitude/Longitude Data
+### Latitude/Longitude
 
 - The original data set was too big for GitHub, so the data had to be processed and wrangled in a separate RScript, then saved into a new csv file and imported into this file. Images of the coding work are included.
 ![city_loc intake](city_loc_intake.png)
@@ -41,7 +43,9 @@ str(city_loc)
 sample_n(city_loc, 10)
 ```  
 
-### Country Tourism Data
+## Population Data
+
+### Country Tourism
 
 - Another way to represent the correlation between climate and human population movement, is looking at a locations climate and tourism rates. 
 - This data measures the amount of tourism dollars spent in different countries over the course of selected years (in US dollars).
@@ -53,7 +57,7 @@ sample_n(country_tour, 10)
 ```
 
 
-### City Population Data
+### City Population
 
 - This data set contains city and country name as well as the population of 2022, 2023, growth rate, type (world versus USA), and rank (1 being the most populated city, 778 being the least populated). 
 - This table will be used to see the correlation between the amount of sunshine a city gets and its population. The '*growth rate*' of the population will be used to more accurately evaluate population changes regardless of a locations size. 
@@ -66,19 +70,21 @@ sample_n(CityPopulations, 10)
 
 # Data Wrangling 
 
-### Sunshine Hours Data
+## Climate Data
+
+### Sunshine Hours
 
 - The original data *sunshine* is already pretty clean data and did not need much wrangling on its own, however there is data we can manipulate for later usage. 
 - I created *sunshine_seasons* which contains the total number of hours for (roughly) each season. Technically seasons tend the start in the middle of a month, so I had to do come approximation on how I split the seasons up. 
 ```{r}
 sunshine_seasons <-
   sunshine %>%
-  mutate(Winter=Jan+Feb+Mar, Spring=Apr+May+Jun, Summer=Jul+Aug+Sep, Fall=Oct+Nov+Dec) %>% # create new variables to represent each season
-  select(Country, City, Winter, Spring, Summer, Fall)
+  mutate(Winter=Jan+Feb+Mar, Spring=Apr+May+Jun, Summer=Jul+Aug+Sep, Fall=Oct+Nov+Dec) %>%# create new variables to represent each season
+  mutate(City=tolower(City)) # change city names to lower case for joining later on
 sample_n(sunshine_seasons, 10)
 ```
 
-### City Latitude/Longitude Data
+### Latitude/Longitude
 
 - This data contains a lot of information that is not needed for our purposes: there are extraneous variables and cases that are duplicated to makeup for different spellings of cities. To eliminate this extra data, I will use **select()** to keep only the columns we need and join the table with the *CityPopulations1* cities to only keep the cities we need.
 ![city_loc data wrangling](city_loc_wrangle.png)
@@ -107,9 +113,25 @@ for(i in 1:length(city_loc$Latitude)){ # loop through each case in Latitude vari
     }
   else city_loc$climate[i] = "poles"
 }
+
+city_loc
 ```
 
-### Country Tourism Data
+### Climate 
+
+- For ease later on, select variables from **sunshine_seasons** and **city_loc** will be added into a single **climate** data frame.
+```{r}
+climate <-
+  city_loc %>%
+  left_join(sunshine_seasons) %>%# join the tables by 'City'
+  na.omit() # remove cities with missing data
+head(climate)
+```
+
+
+# Population Data
+
+### Tourism
 
 - After in taking the data, some things that need adjustment in the data: pick only one year to use for the tourism income (to cut down on the data), rename the variables, get rid of the country codes and divide the values into smaller numbers, since they are quite large.
 ```{r}
@@ -131,7 +153,8 @@ country_tour <-
   country_tour %>%
   filter(year == 2016) %>% # only retain cases from 2016
   mutate(income = as.integer(income/100000)) %>% # divide income by 100,000 for easier reading/plotting
-  rename("tourism income (by 100,000)" = income, Country=name) # rename variables for readability
+  rename("tourism income (by 100,000)" = income, Country=name) %>% # rename variables for readability
+  select(Country, 'tourism income (by 100,000)') # get rid of year variable since all data is from 2016
 sample_n(country_tour,10)
 ```
 - After dividing the income by $100,000 and renaming the variable, this data is ready for use.
@@ -144,12 +167,43 @@ sample_n(country_tour,10)
 CityPopulations1 <-
   CityPopulations %>%
   rename(Country = country, City = city, GrowthRate = growthRate) %>% # renaming variables for usability
-  select(Country, GrowthRate, City) # choosing relevant variables
+  select(Country, GrowthRate) # choosing relevant variables
 sample_n(CityPopulations1,10)
+```
+
+### Population
+
+- **tourism** and **population growth** will be combined into one table named **Population**.
+```{r}
+population <-
+  CityPopulations1 %>%
+  left_join(country_tour) %>% # join the tables by Country
+  na.omit() # remove cases with missing data
+head(population)
 ```
 
 
 # Data Visualization
+
+```{r}
+mean_growth <-
+  climate %>% 
+  left_join(population) %>%
+  na.omit() %>%
+  group_by(climate) %>%
+  summarise(avg = mean(GrowthRate))
+mean_growth
+
+climate %>% 
+  left_join(population) %>%
+  na.omit() %>%
+  ggplot(aes(x = GrowthRate)) + geom_density(aes(colour = climate))  +
+  geom_vline(aes(xintercept=mean_growth$avg[1])) +
+  geom_vline(aes(xintercept=mean_growth$avg[2])) +
+  ggtitle("Growth Rate Density for Tropical & Moderate Climates") +
+  xlab("population growth rate")
+```
+- Tropical climates contain a large number of growth rates around 0.015 while Moderate climates are more spread out with the average right above 0.02. 
 ```{r}
 sunshine_graph_data %>% #use sunshine for left_join, since it contains less countries than CityPopulations1
   left_join(CityPopulations1) %>%
