@@ -245,3 +245,7 @@ Based on this graph, there does not appear to be a strong correlation between gr
 
 Through our preliminary research on the correlation between sunshine and population growth rates, we are finding that there could be a correlation between growth rates of cities and latitude of countries. However, sunshine and tourism income for each country do not correlate, as well as sunshine hours and latitude. Our intuition is that sunshine hours does not correlate with population growth rates in countries, there is information within our data to explore that could lead to stronger correlations. 
 
+
+
+
+
