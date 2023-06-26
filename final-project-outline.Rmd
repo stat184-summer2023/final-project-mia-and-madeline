@@ -127,27 +127,6 @@ for(i in 1:length(city_loc$Latitude)){
   else city_loc$climate[i] = "poles"
 }
 ```
-```{r}
-city_loc_tropical <-
-  city_loc %>%
-  filter(Latitude>=(-23.5) && Latitude<=(23.5)) %>%
-  mutate(type = "tropical")
-
-city_loc_moderate <-
-  city_loc %>%
-  filter(Latitude>=(-66) && Latitude<(-23.5) || Latitude<=(66) && Latitude>(23.5)) %>%
-  mutate(type = "moderate")
-
-city_loc_poles <-
-  city_loc %>%
-  filter(Latitude<(-66) || Latitude>(66)) %>%
-  mutate(type = 'poles')
-
-city_loc_types <-
-  bind_rows(city_loc_moderate, city_loc_tropical) # there are no cities (in this data) in the poles, so i am not including it
-
-city_loc_types
-```
 
 - Now we know the precise locations of the cities, which will be useful to group cities by their locations (and thus sunshine hours and climate) and compare data from there.
 
@@ -210,8 +189,16 @@ sample_n(CityPopulations1,10)
 
 Include R code and written explanation for your data visualization(s) with at least 3 variables. You must have **at least** one graph. You may have more than one (I would encourage you to have more than one). 
 
+```{r}
 
+sunshine_graph_data %>% #use sunshine for left_join, since it contains less countries than CityPopulations1
+  left_join(CityPopulations1) %>%
+  na.omit() %>%
+  ggplot() + 
+  geom_point(aes(x= GrowthRate, y= sun_hours_year, color = type)) +
+  geom_smooth(aes(x= GrowthRate, y= sun_hours_year), color = "purple")
 
+```
 
 ## Conclusion
 
