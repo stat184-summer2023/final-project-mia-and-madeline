@@ -185,34 +185,36 @@ head(population)
 
 # Data Visualization
 
+- Tropical climates contain a large number of growth rates around 0.015 while Moderate climates are more spread out with the average right above 0.02. 
 ```{r}
-mean_growth <-
+mean_growth <- # create new table containing the avg growth rates for tropical and moderate climates
   climate %>% 
   left_join(population) %>%
   na.omit() %>%
   group_by(climate) %>%
-  summarise(avg = mean(GrowthRate))
-mean_growth
+  summarise(avg = mean(GrowthRate)) # calculate the mean for each subcategory
 
 climate %>% 
   left_join(population) %>%
   na.omit() %>%
-  ggplot(aes(x = GrowthRate)) + geom_density(aes(colour = climate))  +
-  geom_vline(aes(xintercept=mean_growth$avg[1])) +
-  geom_vline(aes(xintercept=mean_growth$avg[2])) +
-  ggtitle("Growth Rate Density for Tropical & Moderate Climates") +
-  xlab("population growth rate")
+  ggplot(aes(x = GrowthRate)) + geom_density(aes(colour = climate))  + # create density plot
+  geom_vline(aes(xintercept=mean_growth$avg[1])) + # add intercept for tropical locations
+  geom_vline(aes(xintercept=mean_growth$avg[2])) + # add intercept for moderate locations
+  ggtitle("Growth Rates for Tropical & Moderate Climates") + # rename title
+  xlab("population growth rate") # rename x axis
 ```
-- Tropical climates contain a large number of growth rates around 0.015 while Moderate climates are more spread out with the average right above 0.02. 
+- This graph looks at a locations population growth vs its total sunshine hours per year. Based on the line of best fit, each graph shows some amount of positive correlation, meaning more sunshine hours correlates to a higher growth rate (in this data). Moderate climates have a stronger correlation when compared to tropical climates.
 ```{r}
-sunshine_graph_data %>% #use sunshine for left_join, since it contains less countries than CityPopulations1
-  left_join(CityPopulations1) %>%
+climate %>%
+  left_join(population) %>%
   na.omit() %>%
-  ggplot() + 
-  geom_point(aes(x= GrowthRate, y= sun_hours_year, color = type)) +
-  ggtitle("Population Growth Rate vs. Latitude") +
-  xlab("Population Growth Rate") +
-  ylab("Total Hours of Sunshine per Year")
+  ggplot(aes(x=Year, y=GrowthRate)) + 
+  geom_point(aes(color = climate)) +
+  facet_wrap(~climate) +
+  geom_smooth(method=lm, se=FALSE, color='black') +
+  ggtitle("Population Growth Rate vs. Sunshine Hours per Year") +
+  xlab("sunshine per year (in hours)") +
+  ylab("population growth rate")
 
 ```
 
