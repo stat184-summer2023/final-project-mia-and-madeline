@@ -3,17 +3,17 @@ title: "Final Project Basic Outline"
 author: "Mia and Madeline"
 output: html_notebook
 ---
+# Research Question 
 
-## Research Question 
+  Our project delves into the question of whether there is a correlation between climate and human population movement. When looking at reasons why people choose to live in certain locations, it is important to consider all contributing factors. To represent the *climate* factor in this data exploration will be '*sunshine*' and '*latitude*' related variables. To represent *human population movement* there will be '*tourism*' and '*population*' related variables.  
+  Seasonal depression and mood-changes due to weather and climate patterns can have a serious impact on peoples' lives. Applying this knowledge, climate could be associated with certain locations having increased populations or tourism traffic. 
 
-Our project delves into the question of whether there is a correlation between climate and population movement for different countries. When considering all possible reasons as to why people choose to live in certain locations, it is important to consider all contributing factors-- sunshine, tourism, latitude being a few. Seasonal depression and mood-changes based off the weather is a serious impact on many peoples' lives. Applying this knowledge, climate could be associated with certain locations having an increase in population and tourism over time. 
 
+# Data Processing 
 
-## Data Processing 
+## Data Intake 
 
-#### Data Intake 
-
-##### Loading in Basic Packages
+### Loading in Basic Packages
 
 ```{r}
 library(tidyverse)
