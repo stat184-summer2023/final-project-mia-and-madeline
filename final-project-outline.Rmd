@@ -196,8 +196,9 @@ sunshine_graph_data %>% #use sunshine for left_join, since it contains less coun
   na.omit() %>%
   ggplot() + 
   geom_point(aes(x= GrowthRate, y= sun_hours_year, color = type)) +
+  ggtitle("Population Growth Rate vs. Total Hours of Sunshine per Year") +
   xlab("Population Growth Rate") +
-  ylab("Total Hours of Sunshine in One Year")
+  ylab("Total Hours of Sunshine per Year")
 
 ```
 ```{r}
@@ -217,6 +218,8 @@ latitude_graph_data %>%
   na.omit() %>%
   ggplot() + 
   geom_point(aes(x= Latitude, y= GrowthRate, color = type)) +
+  ylab("Population Growth Rate") +
+  ggtitle("Population Growth Rate vs. Latitude") +
   geom_smooth(method = "glm" , 
               formula = y ~ poly(x, 4),             
               aes(x = Latitude, y = GrowthRate), 
