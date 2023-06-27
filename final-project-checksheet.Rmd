@@ -62,10 +62,13 @@ The official rubric can be found on the "Submit Final Project Report" on Canvas.
 
 
 (A) .Rmd Line number(s) for use of multiple different geoms on a single plot:  
+223/224
 
 (B) .Rmd Line number(s) for use of multiple aesthetics:  
+223/236
 
 (C) .Rmd Line number(s) for use of layered graphics:  
+220-227
 
 (D) .Rmd Line number(s) for use of maps:  
 
