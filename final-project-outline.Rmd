@@ -243,6 +243,6 @@ climate %>%
 
 # Conclusion
 
-After sifting through different data, there may be some correlation between a countries **climate** and **human population movement**. While this may be true, no correlation could be found between *climate* and a locations' *tourism income*.
+After sifting through different data, there may be some correlation between a countries **climate** and **human population movement**. While this may be true, no correlation could be found between *climate* and a locations' *tourism income*. There is a positive correlation between *sunshine hours* and *population growth rate*. However, moderate climates have a slightly stronger, more positive correlation than tropical climates. This can lead to further research and study on why tropical locations are generally less attractive to people. 
 
 
