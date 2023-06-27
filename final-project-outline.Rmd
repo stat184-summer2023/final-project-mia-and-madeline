@@ -181,7 +181,29 @@ population <-
   na.omit() # remove cases with missing data
 head(population)
 ```
+- This table does not clearly show any correlation between climate and the amount of tourism income a country gets.
+```{r}
+# create a new variable to contain the different increments of tourism income
+for(i in 1:nrow(population)){
+  if(population$'tourism income (by 100,000)'[i]<5000){population$tour_group[i]="<5000"}
+  else if(population$'tourism income (by 100,000)'[i]<10000){population$tour_group[i]="<10000"}
+  else if(population$'tourism income (by 100,000)'[i]<20000){population$tour_group[i]="<20000"}
+  else if(population$'tourism income (by 100,000)'[i]<50000){population$tour_group[i]="<50000"}
+  else if(population$'tourism income (by 100,000)'[i]<100000){population$tour_group[i]="<100000"}
+  else{population$tour_group[i]=">100000"}
+}
 
+# count the number of countries with different tourism incomes grouped by climate region.
+population %>%
+  select(Country, tour_group) %>%
+  unique() %>%
+  left_join(climate) %>%
+  select(Country, tour_group, climate) %>%
+  group_by(tour_group, climate) %>%
+  summarise(total=n()) %>%
+  na.omit() %>%
+  pivot_wider(values_from=total, names_from=climate)
+```
 
 # Data Visualization
 
@@ -197,7 +219,8 @@ mean_growth <- # create new table containing the avg growth rates for tropical a
 climate %>% 
   left_join(population) %>%
   na.omit() %>%
-  ggplot(aes(x = GrowthRate)) + geom_density(aes(colour = climate))  + # create density plot
+  ggplot(aes(x = GrowthRate)) + 
+  geom_density(aes(colour = climate))  + # create density plot
   geom_vline(aes(xintercept=mean_growth$avg[1])) + # add intercept for tropical locations
   geom_vline(aes(xintercept=mean_growth$avg[2])) + # add intercept for moderate locations
   ggtitle("Growth Rates for Tropical & Moderate Climates") + # rename title
@@ -218,34 +241,8 @@ climate %>%
 
 ```
 
-```{r}
-
-latitude_graph_data <-
-  sunshine %>%
-  mutate(City = tolower(City)) %>% #to make city names match those in city_loc_types
-  left_join(city_loc_types) %>% # join the tables
-  group_by(Country) %>%
-  mutate(sun_hours_year = mean(Year)) %>% # find the average sunshine hours per year per country
-  select(Country, Latitude, type, sun_hours_year) %>%
-  distinct() %>%
-  na.omit()
-
-latitude_graph_data %>%
-  left_join(CityPopulations1) %>%
-  na.omit() %>%
-  ggplot() + 
-  geom_point(aes(x= Latitude, y= GrowthRate, color = type)) +
-  ylab("Population Growth Rate") +
-  ggtitle("Population Growth Rate vs. Latitude") +
-  geom_smooth(method = "glm" , 
-              formula = y ~ poly(x, 4),             
-              aes(x = Latitude, y = GrowthRate), 
-              color = "purple")
-
-```
-
 # Conclusion
 
-Answer your research question using the data sets and visualizations you created. 
+After sifting through different data, there may be some correlation between a countries **climate** and **human population movement**. While this may be true, no correlation could be found between *climate* and a locations' *tourism income*.
 
 
