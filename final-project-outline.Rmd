@@ -221,6 +221,6 @@ climate %>%
 
 # Conclusion
 
-Answer your research question using the data sets and visualizations you created. 
+Overall, there is a positive correlation between sunshine and population growth rate and climate. However, moderate climates have a stronger, more positive correlation with population growth rates than tropical climates. This can lead to further research and study on why tropical locations are generally less attractive to people. 
 
 
