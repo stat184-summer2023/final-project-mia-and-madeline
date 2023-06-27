@@ -218,31 +218,6 @@ climate %>%
 
 ```
 
-```{r}
-
-latitude_graph_data <-
-  sunshine %>%
-  mutate(City = tolower(City)) %>% #to make city names match those in city_loc_types
-  left_join(city_loc_types) %>% # join the tables
-  group_by(Country) %>%
-  mutate(sun_hours_year = mean(Year)) %>% # find the average sunshine hours per year per country
-  select(Country, Latitude, type, sun_hours_year) %>%
-  distinct() %>%
-  na.omit()
-
-latitude_graph_data %>%
-  left_join(CityPopulations1) %>%
-  na.omit() %>%
-  ggplot() + 
-  geom_point(aes(x= Latitude, y= GrowthRate, color = type)) +
-  ylab("Population Growth Rate") +
-  ggtitle("Population Growth Rate vs. Latitude") +
-  geom_smooth(method = "glm" , 
-              formula = y ~ poly(x, 4),             
-              aes(x = Latitude, y = GrowthRate), 
-              color = "purple")
-
-```
 
 # Conclusion
 
