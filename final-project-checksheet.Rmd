@@ -23,10 +23,10 @@ The official rubric can be found on the "Submit Final Project Report" on Canvas.
 *Description: (1) Analysis includes at least two different data sources. (2) Primary data source may NOT be loaded from an R package--though supporting data may. (3) Access to all data sources is contained within the analysis. (4) All imported data is inspected at beginning of analysis using one or more R functions: e.g., str, glimpse, head, tail, names, nrow, etc*
 
 (A) .Rmd Line numbers where at least two different data sources are imported:  
-29,44,57,70
+26,41,54,66
 
 (B) .Rmd Line numbers for inspecting data intake:  
-31-34, 46-49, 59-62, 72-75
+27/28, 42/43, 55/56, 67/68
 
 ### Data Wrangling (5 out of 7 required)
 
@@ -34,16 +34,16 @@ The official rubric can be found on the "Submit Final Project Report" on Canvas.
 
 
 (A) .Rmd Line number(s) for general data wrangling: 
-
+93-98
 
 (B) .Rmd Line number(s) for a join operation: 
-
+126
 
 (C) .Rmd Line number(s) for use of reduction and/or transformation functions:
-
+203
 
 (D) .Rmd Line number(s) for a pivot_wider or pivot_longer operation (or equivalent):
-
+205
 
 (E) .Rmd Line number(s) for use of regular expressions: 
 
@@ -52,7 +52,7 @@ The official rubric can be found on the "Submit Final Project Report" on Canvas.
 
 
 (G) .Rmd Line number(s) for use of loops and/or control flow: 
-
+107-115
 
   
 
